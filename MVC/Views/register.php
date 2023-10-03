@@ -9,10 +9,11 @@ include('../Models/database.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <link rel="icon" href="../../img/logo/1.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/regiter.css">
   <title>Create Account</title>
   </head>
 <body class="bg-info">
-<nav class="navbar navbar-expand-lg bg-danger-subtle">
+<nav class="navbar navbar-expand-lg " style="background-color: #dca8a8;">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><span class="text-warning h1">Mini</span>Luxe</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,42 +73,54 @@ include('../Models/database.php');
       </div>
     </nav>
 
-    <div id="wropper bg-success" >
-        <div class="container" >
-            <div class="row justify-content-around">
-                <form action="" class="col-md-5 bg -light p-3 my-1" method="POST">
-                    <h1 class="text-center text-uppercase h3 py-1 ">Create Acount</h1><br>
-                <div class="form-group">
-                    <input type="text" name="firstname"
-                    id="firstname" class="form-control" placeholder="First name" required>
-                </div><br>
-                <div class="form-group">
-                    <input type="text" name="lastname"
-                    id="lastname" class="form-control" placeholder="Last name" required>
-                </div><br>
-                <div class="form-group">
-                    <input type="email" name="email"
-                    id="email" class="form-control" placeholder="Email" required>
-                </div><br>
-                <div class="form-group">
-                    <input type="text" name="phone"
-                    id="phone" class="form-control" placeholder="Phone" required>
-                </div><br>
-                <div class="form-group">
-                    <input type="text" name="username"
-                    id="username" class="form-control" placeholder="Username" required>
-                </div><br>
-                <div class="form-group">
-                    <input type="password" name="password"
-                    id="password" class="form-control" placeholder="Password" required>
-                </div><br>
-                <input type="submit" name="btn" value="Create" class="btn-primary btn btn-block mb-3">
-                </form>
-            </div>
-        </div>
+    <div class="content-for-layout focus-one">
+      <div id="wropper bg-success" style="background-color: #ffffff;">
+          <div class="regiter-container" >
+              <div class="row justify-content-around" >
+                  
+                  <h1 class="text-center text-uppercase h3 py-1 ">Create Acount</h1>
+                  <form action="" class="col-md-5 bg -light p-3 my-1" method="POST">
+
+                  <div class="form-group mb-4">
+                      <input type="text" name="firstname"
+                      id="firstname" class="form-control" placeholder="First name" required>
+                  </div>
+                  <div class="form-group mb-4">
+                      <input type="text" name="lastname"
+                      id="lastname" class="form-control" placeholder="Last name" required>
+                  </div>
+                  <div class="form-group mb-4">
+                      <input type="email" name="email"
+                      id="email" class="form-control" placeholder="Email" required>
+                  </div>
+                  <div class="form-group mb-4">
+                      <input type="text" name="phone"
+                      id="phone" class="form-control" placeholder="Phone" required>
+                  </div>
+                  <div class="form-group mb-4">
+                      <input type="text" name="username"
+                      id="username" class="form-control" placeholder="Username" required>
+                  </div>
+                  <div class="form-group mb-4">
+                      <input type="password" name="password"
+                      id="password" class="form-control" placeholder="Password" required>
+                  </div>
+                  <div class="text-center pt-1 mb-5 pb-1">
+                        <input class="create-regiter text-white mb-3" type="submit" name="btn"
+                          value="Create" />
+                  </div>
+                  </form>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">Do you have an account?</p>
+                    <a class="create-register text-white" href="login.php">Sign in</a><br>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
 
-    <footer class="py-3 my-4 bg-danger-subtle">
+    <footer class="py-3 my-4 " style="background-color: #dca8a8;">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-muted">BOOK NOW</a>

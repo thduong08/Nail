@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-danger-subtle">
+    <nav class="navbar navbar-expand-lg " style="background-color: #dca8a8;">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><span class="text-warning h1">Mini</span>Luxe</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
         </div>
       </div>
     </nav>
-    <footer class="py-3 my-4 bg-danger-subtle">
+    <footer class="py-3 my-4 " style="background-color: #dca8a8;">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-muted">BOOK NOW</a>
