@@ -106,7 +106,7 @@ include('../Models/database.php');
                       id="password" class="form-control" placeholder="Password" required>
                   </div>
                   <div class="text-center pt-1 mb-5 pb-1">
-                        <input class="create-regiter text-white mb-3" type="submit" name="btn"
+                        <input class="create-regsiter text-white mb-3" type="submit" name="btn"
                           value="Create" />
                   </div>
                   </form>
@@ -120,7 +120,7 @@ include('../Models/database.php');
       </div>
     </div>
 
-    <footer class="py-3 my-4 " style="background-color: #dca8a8;">
+    <footer class="py-3 " style="background-color: #dca8a8;">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-muted">BOOK NOW</a>
