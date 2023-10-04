@@ -101,7 +101,7 @@
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="./image/nail5.webp" class="d-block w-100" alt="...">
+            <img src="../../img/image/nail5.webp" class="d-block w-100" alt="...">
             <div class="carousel-caption">
               <div class="mb-5">
                 <h1>Nail Your </h1>
@@ -113,14 +113,14 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img src="./image/nail1.jpg" class="d-block w-100" alt="...">
+            <img src="../../img/image/nail1.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <a href=""><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
               <a href=""><button type="button" class="btn btn-light rounded-5">SHOP NEW</button></a>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="./image/nail1.jpg" class="d-block w-100" alt="...">
+            <img src="../../img/image/nail1.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <a href=""><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
               <a href=""><button type="button" class="btn btn-light rounded-5">SHOP NEW</button></a>
@@ -158,7 +158,7 @@
       <div class="row">
         <div class="col-md">
           <div class="product-img">
-            <a href=""><img class="img-fluid" src="./image/nail4.webp" alt=""></a>
+            <a href=""><img class="img-fluid" src="../../img/image/nail4.webp" alt=""></a>
             
           </div>
           <div class="product-name">Nailart</div>
@@ -171,7 +171,7 @@
         </div>
         <div class="col-md">
           <div class="product-img">
-            <a href=""><img class="img-fluid" src="./image/nail6.webp" alt=""></a>
+            <a href=""><img class="img-fluid" src="../../img/image/nail6.webp" alt=""></a>
           </div>
           <div class="product-name">Nailart</div>
           <div class="product-price">
@@ -183,7 +183,7 @@
         </div>
         <div class="col-md">
           <div class="product-img">
-            <a href=""><img class="img-fluid" src="./image/nail7.webp" alt=""></a>
+            <a href=""><img class="img-fluid" src="../../img/image/nail7.webp" alt=""></a>
           </div>
           <div class="product-name">Nailart</div>
           <div class="product-price">
@@ -195,7 +195,7 @@
         </div>
         <div class="col-md">
           <div class="product-img">
-            <a href=""><img class="img-fluid" src="./image/nail8.webp" alt=""></a>
+            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
           </div>
           <div class="product-name">Nailart</div>
           <div class="product-price">
@@ -261,7 +261,7 @@
         <div class="row">
           <div class="col-md">
             <div class="product-img">
-              <a href=""><img class="img-fluid" src="./image/nail4.webp" alt=""></a>
+              <a href=""><img class="img-fluid" src="../../img/image/nail4.webp" alt=""></a>
               
             </div>
             <div class="product-name">Nailart</div>
@@ -274,7 +274,7 @@
           </div>
           <div class="col-md">
             <div class="product-img">
-              <a href=""><img class="img-fluid" src="./image/nail6.webp" alt=""></a>
+              <a href=""><img class="img-fluid" src="../../img/image/nail6.webp" alt=""></a>
             </div>
             <div class="product-name">Nailart</div>
             <div class="product-price">
@@ -286,7 +286,7 @@
           </div>
           <div class="col-md">
             <div class="product-img">
-              <a href=""><img class="img-fluid" src="./image/nail7.webp" alt=""></a>
+              <a href=""><img class="img-fluid" src="../../img/image/nail7.webp" alt=""></a>
             </div>
             <div class="product-name">Nailart</div>
             <div class="product-price">
@@ -298,7 +298,7 @@
           </div>
           <div class="col-md">
             <div class="product-img">
-              <a href=""><img class="img-fluid" src="./image/nail8.webp" alt=""></a>
+              <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
             </div>
             <div class="product-name">Nailart</div>
             <div class="product-price">
@@ -316,7 +316,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
-            <img src="./image/story.webp" alt="">
+            <img src="../../img/image/story.webp" alt="">
           </div>
           <div class="col-md-6">
             <div style="padding-top: 50px; padding-left: 70px;">
@@ -339,7 +339,7 @@
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="./image/nail1.jpg" class="d-block w-100 img-fluid" alt="...">
+              <img src="../../img/image/nail1.jpg" class="d-block w-100 img-fluid" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h3>Miniluxe trademark</h3>
               <p>
@@ -348,7 +348,7 @@
               </div>
             </div>
             <div class="carousel-item">
-              <img src="./image/nail1.jpg" class="d-block w-100 img-fluid" alt="...">
+              <img src="../../img/image/nail1.jpg" class="d-block w-100 img-fluid" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h3>Miniluxe trademark</h3>
                 <p>
@@ -357,7 +357,7 @@
               </div>
             </div>
             <div class="carousel-item">
-              <img src="./image/nail1.jpg" class="d-block w-100 img-fluid" alt="...">
+              <img src="../../img/image/nail1.jpg" class="d-block w-100 img-fluid" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h3>Miniluxe trademark</h3>
                 <p>
