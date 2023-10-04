@@ -141,6 +141,80 @@ include('../Models/database.php');
     $username = $_POST["username"];
     $password = $_POST["password"];
 
+    // Check username exist
+    function checkUsername($conn, $username) {
+        $check_username_query = "SELECT * FROM users WHERE username=?";
+        $stmt = $conn->prepare($check_username_query);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $stmt->close();
+            return true; 
+        } else {
+            $stmt->close();
+            return false; 
+        }
+    }
+    
+    // Check mail exist
+    function checkEmail($conn, $email) {
+        $check_email_query = "SELECT * FROM users WHERE email=?";
+        $stmt = $conn->prepare($check_email_query);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $stmt->close();
+            return true; 
+        } else {
+            $stmt->close();
+            return false; 
+    }
+  }
+    
+    // Check phone exist
+    function checkPhone($conn, $phone) {
+        $check_phone_query = "SELECT * FROM users WHERE phone=?";
+        $stmt = $conn->prepare($check_phone_query);
+        $stmt->bind_param("s", $phone);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $stmt->close();
+            return true; 
+        } else {
+            $stmt->close();
+            return false;
+        }
+    }
+    
+    $usernameExists = checkUsername($conn, $username);
+    $emailExists = checkEmail($conn, $email);
+    $phoneExists = checkPhone($conn, $phone);
+    
+    if ($usernameExists) {
+        echo "<script>alert('Username already exists. Please choose another username.');</script>";
+        $conn->close();
+        exit();
+    }
+    
+    if ($emailExists) {
+        echo "<script>alert('Email already exists. Please choose another email.');</script>";
+        $conn->close();
+        exit();
+    }
+    
+    if ($phoneExists) {
+        echo "<script>alert('Phone number already exists. Please choose another phone number.');</script>";
+        $conn->close();
+        exit();
+    }
+
+
     // check username
     if (strlen($username) < 6 || strlen($username) > 36) {
       echo "<script>alert('Username must be between 6 and 36 characters.');</script>";
