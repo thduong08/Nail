@@ -31,14 +31,16 @@ include('../Models/database.php');
                   <h4 class="mt-1 mb-5 pb-1">Miniluxe</h4>
                 </div>
 
-                <form action="" method="POST" >
+                <form action="" method="POST">
                   <p>Do you want to buy our Products?</p>
                   <div class="form-outline mb-4">
-                    <input type="text" id="username" class="form-control" name="username" placeholder="Username" required/>
+                    <input type="text" id="username" class="form-control" name="username" placeholder="Username"
+                      required />
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="password" id="password" class="form-control" name="password" placeholder="Password" required/>
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Password"
+                      required />
                     <br>
                     <a class="text-muted text-black" href="#!">Forgot password?</a>
                   </div>
@@ -73,18 +75,28 @@ include('../Models/database.php');
   <div class="footer">
 
   </div>
-  
+
   <?php
   if (isset($_POST["btn"])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-  
-    $query = "SELECT * FROM users WHERE userName='$username' AND password='$password'";
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    $query = "SELECT * FROM users WHERE userName='$username'";
     $result = mysqli_query($conn, $query);
-  
+
     if ($result->num_rows > 0) {
-      header("Location: home.php");
-      exit();
+      $row = $result->fetch_assoc();
+      $stored_hashed_password = $row['password'];
+
+      if (password_verify($password, $stored_hashed_password)) {
+
+        header("Location: home.php");
+        exit();
+      } else {
+        echo "<script>alert('Username or password is incorrect');</script>";
+      }
     } else {
       echo "<script>alert('Username or password is incorrect');</script>";
     }
