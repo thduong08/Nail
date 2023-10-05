@@ -2,6 +2,32 @@
 include('../Models/database.php');
 ?>
 
+<?php
+  if (isset($_POST["btn"])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    $query = "SELECT * FROM users WHERE userName='$username'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $stored_hashed_password = $row['password'];
+
+      if (password_verify($password, $stored_hashed_password)) {
+        header("Location: home.php");
+        exit();
+      } else {
+        echo "<script>alert('Username or password is incorrect');</script>";
+      }
+    } else {
+      echo "<script>alert('Username or password is incorrect');</script>";
+    }
+  }
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,9 +103,15 @@ include('../Models/database.php');
     </nav>
     
   <div class="content-for-layout focus-one">
-    <section style="background-color: #ffffff;">
+    <section style="background-color: #ffffff">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="login-contrainer">
+            <div class="booking-login">
+              <div class="text-black                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               px-3 py-4 p-md-5 mx-md-4">
+                <h2>Do you want to Book an Appointment?</h2>
+                <button type="button" class="btn-book-now text-white">Book Now</button>
+              </div>
+            </div>
             <div class="customer-login">
               <div>
                
@@ -92,7 +124,7 @@ include('../Models/database.php');
                     <div class="form-outline mb-4">
                       <input type="password" id="password" class="form-control" name="password" placeholder="Password" required/>
                       <br>
-                      <a class="text-muted text-black" href="#!">Forgot password?</a>
+                      <a class="text-muted text-black" href="forgotpassword.php">Forgot password?</a>
                     </div>
 
                     <div class="text-center pt-1 mb-5 pb-1">
@@ -112,12 +144,7 @@ include('../Models/database.php');
                   </div>
               </div>
             </div>
-            <div class="booking-login">
-              <div class="text-black                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 px-3 py-4 p-md-5 mx-md-4">
-                <h2>Do you want to Book an Appointment?</h2>
-                <button type="button" class="btn-book-now text-white">Book Now</button>
-              </div>
-            </div>
+
         </div>
     </section>
   </div>
@@ -146,22 +173,6 @@ include('../Models/database.php');
       <p class="text-center text-muted">© 2023 Miniluxe, Inc</p>
     </footer>
   
-  <?php
-  if (isset($_POST["btn"])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-  
-    $query = "SELECT * FROM users WHERE userName='$username' AND password='$password'";
-    $result = mysqli_query($conn, $query);
-  
-    if ($result->num_rows > 0) {
-      header("Location: home.php");
-      exit();
-    } else {
-      echo "<script>alert('Username or password is incorrect');</script>";
-    }
-  }
-  ?>
 </body>
 
 </html>
