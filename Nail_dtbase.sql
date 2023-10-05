@@ -29,6 +29,7 @@ INSERT INTO Categories(CategoryName) VALUES
 ('Nail care'),
 ('Nail box');
 
+SELECT*FROM Categories;
 
 CREATE TABLE Products (
     ProductID INT AUTO_INCREMENT PRIMARY KEY,
@@ -94,6 +95,7 @@ VALUES
 ('GIFT3545135', 3.0, '2023-12-31'),
 ('GIFT3515114', 4.0, '2023-12-31');
 
+SELECT*FROM GiftCards;
 
 CREATE TABLE Carts (
     CartID INT AUTO_INCREMENT PRIMARY KEY,
@@ -118,6 +120,7 @@ INSERT INTO Posts (Title, Content, CreatedAt) VALUES
 ('Find a Studio', 'Leading the industry with clean and healthy nails (and waxing!).', '2023-10-05 14:30:00'),
 ('Trends in Nail Art', 'Nail art is constantly evolving, with new trends emerging regularly. From intricate designs to vibrant colors, the nail art scene has something for everyone. In this post, we will explore the latest trends in nail art and how you can stay fashionable with your nail designs.', '2023-10-05 15:00:00');
 
+SELECT*FROM Posts;
 
 CREATE TABLE Orders (
     OrderID INT AUTO_INCREMENT PRIMARY KEY,
@@ -137,3 +140,13 @@ CREATE TABLE OrderDetail (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
+
+CREATE TABLE Feedback (
+    FeedbackID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
+    Content TEXT NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+drop database Nail_dtbase
+

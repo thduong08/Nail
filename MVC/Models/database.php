@@ -1,5 +1,5 @@
 <?php
-    $hostName ="localhost:3307";
+    $hostName ="localhost:3306";
     $userName="root";
     $password="12345678";
     $databaseName="Nail_dtbase";
