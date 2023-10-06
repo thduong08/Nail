@@ -11,6 +11,11 @@ img{
 .img-fluid{
     height: 400px;
 }
+.nail-copyright li{
+    display: inline-block;
+    padding: 20px;
+}
+
 @media only screen and (min-width: 768px) {
     .collapse{
         padding-left: 30%;

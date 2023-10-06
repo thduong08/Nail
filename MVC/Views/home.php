@@ -16,19 +16,24 @@
 </head>
 <body>
   <section class="nail-header">
-    <div class="container-fluid bg-danger-subtle py-3">
+    <div class="nail-miniluxe bg-danger-subtle">
+      <div class="container-fluid text-center" style="height: 30px; line-height:30px;">
+      <p>FREE SHIPPING ON ORDERS $50+</p>
+      </div>
+    </div>
+    <div class="container-fluid py-3">
       <div class="row">
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
             <div class="col-md-4"><a href=""><button type="button" class="btn btn-dark rounded-5">BOOK NOW</button></a></div>
-            <div class="col-md-8 pt-1"><a href="" class=""> SERVICE</a></div>
+            <div class="col-md-8 pt-1 p-0"><a href="" class=""> SERVICE</a></div>
           </div>
         </div>
         <div class="col-md-4 pt-1 fs-2">
           <a href=""><span class="text-warning">Mini</span>luxe</a></div>
         <div class="col-md-3 d-none d-md-block">
           <div class="row">
-            <div class="col-md-6"><a href="">About Us</a></div>
+            <div class="col-md-6" style="text-align:right;"><a href="">About Us</a></div>
             <div class="col-md-2">
               <a href="">
                 <p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>
@@ -50,7 +55,7 @@
     </div>
   </section>
   <section class="nail-mainmenu">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -381,23 +386,51 @@
   <section class="nail-footer">
     <div class="container-fluid bg-danger-subtle">
       <div class="row">
-        <div class="col-md-6">
-          <p class="p-0 m-0">A MiniMoment In Your Inbox</p>
-          <p class="p-0 m-0">Get email updates on all things nails,</p>
-          <p class="p-0 m-0">evens, products and launches. No strings</p>
-          <p class="p-0 m-0">attached-you can unsubscribe at any time</p>
+        <div class="col-md-5 my-3">
+          <h3 class="p-0 m-0"><span class="text-warning fs-1">Mini</span>luxe</h3>
+          <p class="p-0 m-0">Get email updates on all things nails, evens, products and</p>
+          <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
           <p>
             <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary rounded-5" type="button" id="button-addon2">Subscribe</button>
+            <button class="btn btn-outline-secondary btn-light rounded-5" type="button" id="button-addon2">Subscribe</button>
           </div>
         </p>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6 my-4">
+          <div class="row">
+            <div class="col-md-4" >
+              <ul style="list-style-type: none;">
+                <li class="my-2"><a href="">MEMBERSHIP</a></li>
+                <li class="my-2"><a href="">SHOP</a></li>
+                <li class="my-2"><a href="">LOCATIONS</a></li>
+                <li class="my-2"><a href="">SERVICES</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+            <ul style="list-style-type: none;">
+                <li class="my-2"><a href="">ABOUT</a></li>
+                <li class="my-2"><a href="">CAREERS</a></li>
+                <li class="my-2"><a href="">GIFT CARDS</a></li>
+                <li class="my-2"><a href="">FAQ</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+            <ul style="list-style-type: none;">
+                <li class="my-2"><a href="">CONTACT US</a></li>
+                <li class="my-2"><a href="">FRANCHISE</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <p class="text-center p-0 m-0"><i class="bi bi-c-circle"></i> 2023 Miniluxe All Rights Reserved Price Policy Team of Service</p>
-        <p class="text-center pb-2 m-0">Cookie Policy</p>
+      <div class="nail-copyright text-center">
+        <ul class="m-0 p-0">
+          <li>2023 <i class="bi bi-c-circle"></i> GLOSSLAB ALL Rights Reserved</li>
+          <li>Privacy Policy</li>
+          <li>Terms Of Service</li>
+          <li>Cookie Policy</li>
+        </ul>
       </div>
     </div>
   </section>
