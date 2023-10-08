@@ -23,16 +23,16 @@
       <div class="row">
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
-            <div class="col-md-4"><a href=""><button type="button" class="btn bg-danger-subtle rounded-5">BOOK NOW</button></a></div>
-            <div class="col-md-8 pt-1 p-0"><a href="" class=""> SERVICE</a></div>
+            <div class="col-md-4 "><a href=""><button type="button" class="btn bg-danger-subtle rounded-5 lh-lg">BOOK NOW</button></a></div>
+            <div class="col-md-8 pt-1 p-0 lh-lg"><a href="" class=""> SERVICE</a></div>
           </div>
         </div>
-        <div class="col-md-3 pt-1 fs-2">
+        <div class="col-md-2 pt-1 fs-2 text-center">
           <a href=""><span>NAIL SPA</span></a>
         </div>
-        <div class="col-md-4 d-none d-md-block">
+        <div class="col-md-5 d-none d-md-block">
           <div class="row">
-            <div class="col-md-6" style="text-align:right;"><a href="">About Us</a></div>
+            <div class="col-md-6 text-end lh-lg" ><a href="">About Us</a></div>
             <div class="col-md-2">
               <a href="">
                 <p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>
@@ -53,7 +53,7 @@
       </div>
     </div>
   </section>
-  <section class="nail-mainmenu">
+  <section class="nail-mainmenu" style="display: flex; justify-content: center; align-items: center;">
     <nav class="navbar navbar-expand-lg bg-body">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -355,7 +355,7 @@
             </div>
           </div>
           <div class="col-md-7 my-3">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14898.516285517224!2d105.92669975541993!3d21.007500900000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135afe1391f2bb7%3A0xecc11a7bac874396!2sVinhomes%20Ocean%20Park!5e0!3m2!1svi!2s!4v1696694443420!5m2!1svi!2s" width="650" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14898.516285517224!2d105.92669975541993!3d21.007500900000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135afe1391f2bb7%3A0xecc11a7bac874396!2sVinhomes%20Ocean%20Park!5e0!3m2!1svi!2s!4v1696694443420!5m2!1svi!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
