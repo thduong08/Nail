@@ -16,13 +16,6 @@ img{
     padding: 20px;
 }
 
-@media only screen and (min-width: 768px) {
-    .collapse{
-        padding-left: 28%;
-    }
-  }
-
-
     .slick-dots{
         margin-right: 20px;
     }

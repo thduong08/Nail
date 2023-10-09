@@ -1,10 +1,13 @@
+<?php
+include('../Models/database.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Home</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="./css/home.css">
@@ -13,6 +16,7 @@
 </head>
 
 <body>
+  <!-- header -->
   <section class="nail-header">
     <div class="nail-miniluxe bg-danger-subtle">
       <div class="container-fluid text-center" style="height: 30px; line-height:30px;">
@@ -23,18 +27,19 @@
       <div class="row">
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
-            <div class="col-md-4"><a href=""><button type="button" class="btn bg-danger-subtle rounded-5">BOOK NOW</button></a></div>
-            <div class="col-md-8 pt-1 p-0"><a href="" class=""> SERVICE</a></div>
+            <div class="col-md-4 "><a href=""><button type="button" class="btn bg-danger-subtle rounded-5 lh-lg">BOOK
+                  NOW</button></a></div>
+            <div class="col-md-8 pt-1 p-0 lh-lg"><a href="" class=""> SERVICE</a></div>
           </div>
         </div>
-        <div class="col-md-3 pt-1 fs-2">
+        <div class="col-md-2 pt-1 fs-2 text-center">
           <a href=""><span>NAIL SPA</span></a>
         </div>
-        <div class="col-md-4 d-none d-md-block">
+        <div class="col-md-5 d-none d-md-block">
           <div class="row">
-            <div class="col-md-6" style="text-align:right;"><a href="">About Us</a></div>
+            <div class="col-md-6 text-end lh-lg"><a href="">About Us</a></div>
             <div class="col-md-2">
-              <a href="">
+              <a href="login.php">
                 <p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>
               </a>
             </div>
@@ -53,16 +58,32 @@
       </div>
     </div>
   </section>
-  <section class="nail-mainmenu">
+  <section class="nail-mainmenu" style="display: flex; justify-content: center; align-items: center;">
     <nav class="navbar navbar-expand-lg bg-body">
       <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item px-2">
-              <a class="nav-link active" aria-current="page" href="#">Shop</a>
+            <li class="nav-item dropdown px-2">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Shop</a>
+              <ul class="dropdown-menu">
+                <?php
+                $sql = "SELECT * FROM Categories";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    echo '<li class="dropdown-item">';
+                    echo '<a class="nav-link" href="Shop.php?CategoryID=' . $row['CategoryID'] . '">' . $row['CategoryName'] . '</a>';
+                    echo '</li>';
+                  }
+                }
+
+                ?>
+              </ul>
             </li>
             <li class="nav-item px-2">
               <a class="nav-link" aria-current="page" href="#">Nairl Art</a>
@@ -78,13 +99,15 @@
             </li>
 
             <li class="nav-item dropdown px-2">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 More
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Location</a></li>
                 <li><a class="dropdown-item" href="#">Contact us</a></li>
                 <li><a class="dropdown-item" href="#">FAQ</a></li>
+
               </ul>
             </li>
           </ul>
@@ -92,7 +115,7 @@
       </div>
     </nav>
   </section>
-
+<!-- body -->
   <section class="nail-maincontent">
     <div class="slider">
       <div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel">
@@ -134,11 +157,13 @@
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="prev">
+        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls"
+          data-mdb-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="next">
+        <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls"
+          data-mdb-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
@@ -147,8 +172,10 @@
     <div class="nail-history">
       <div class="container-fluid text-center py-3">
         <h1 class="pb-3">More than a Mani</h1>
-        <p class="p-0 m-0">For 15 years and counting, we’ve been delivering the highest quality nail care and waxing services and</p>
-        <p class="p-0 m-0">products. We’re committed to clean and better-for-you experiences that celebrate your self-expression,</p>
+        <p class="p-0 m-0">For 15 years and counting, we’ve been delivering the highest quality nail care and waxing
+          services and</p>
+        <p class="p-0 m-0">products. We’re committed to clean and better-for-you experiences that celebrate your
+          self-expression,</p>
         <p class="p-0 m-0">empower our designers and positively change our industry - one mini moment at a time.</p>
       </div>
     </div>
@@ -271,7 +298,8 @@
             <div class="card">
               <i class="bi bi-badge-8k-fill fs-2"></i>
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
               </div>
             </div>
           </div>
@@ -279,7 +307,8 @@
             <div class="card">
               <i class="bi bi-cloud-sun-fill fs-2"></i>
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
               </div>
             </div>
           </div>
@@ -287,7 +316,8 @@
             <div class="card">
               <i class="bi bi-globe fs-2"></i>
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
               </div>
             </div>
           </div>
@@ -295,7 +325,8 @@
             <div class="card">
               <i class="bi bi-flag-fill fs-2"></i>
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
               </div>
             </div>
           </div>
@@ -311,7 +342,9 @@
           <div class="col-md-6">
             <div style="padding-top: 50px; padding-left: 70px;">
               <h1>Empowerment <br>is Beautiful</h1>
-              <p class="py-3">Founded with a vision to radically change <br> an industry by doing what is right, not <br> just what is standard.</p>
+              <p class="py-3">Founded with a vision to radically change <br> an industry by doing what is right, not
+                <br> just what is standard.
+              </p>
               <a href=""><button type="button" class="btn btn-dark rounded-5 fs-3 mt-5">About Us</button></a>
             </div>
           </div>
@@ -327,7 +360,8 @@
             <h3>Our locations</h3>
             <div class="input-group flex-nowrap">
               <span class="input-group-text" id="addon-wrapping">@</span>
-              <input type="text" class="form-control" placeholder="Search by Region, State, City" aria-label="Username" aria-describedby="addon-wrapping">
+              <input type="text" class="form-control" placeholder="Search by Region, State, City" aria-label="Username"
+                aria-describedby="addon-wrapping">
             </div>
             <div class="row my-2">
               <div class="col-md-8 " style="padding-top: 10px;">
@@ -355,12 +389,16 @@
             </div>
           </div>
           <div class="col-md-7 my-3">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14898.516285517224!2d105.92669975541993!3d21.007500900000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135afe1391f2bb7%3A0xecc11a7bac874396!2sVinhomes%20Ocean%20Park!5e0!3m2!1svi!2s!4v1696694443420!5m2!1svi!2s" width="650" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14898.516285517224!2d105.92669975541993!3d21.007500900000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135afe1391f2bb7%3A0xecc11a7bac874396!2sVinhomes%20Ocean%20Park!5e0!3m2!1svi!2s!4v1696694443420!5m2!1svi!2s"
+              width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <!-- footer -->
   <section class="nail-footer">
     <div class="container-fluid bg-danger-subtle">
       <div class="row">
@@ -370,8 +408,10 @@
           <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
           <p>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button style="margin-left: 10px;" class="btn btn-outline-secondary btn-light rounded-5" type="button" id="button-addon2">Subscribe</button>
+            <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username"
+              aria-describedby="button-addon2">
+            <button style="margin-left: 10px;" class="btn btn-outline-secondary btn-light rounded-5" type="button"
+              id="button-addon2">Subscribe</button>
           </div>
           </p>
         </div>
