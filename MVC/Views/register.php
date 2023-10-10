@@ -30,15 +30,15 @@ include('../Models/database.php');
     function displayError($message)
     {
       echo "
-<div class='toast show text-center mx-auto' style='position: fixed; top: 0; left: 0; right: 0; z-index: 1000;'>
-<div class='toast-header'>
-  <strong class='me-auto'>Error</strong>
-  <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
-</div>
-    <div class='toast-body'>
-        $message
-    </div>
-</div>";
+          <div class='toast show text-center mx-auto' style='position: fixed; top: 0; left: 0; right: 0; z-index: 1000;'>
+          <div class='toast-header'>
+            <strong class='me-auto'>Error</strong>
+            <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
+          </div>
+              <div class='toast-body'>
+                  $message
+              </div>
+          </div>";
       exit();
     } ?>
 
@@ -156,13 +156,18 @@ include('../Models/database.php');
                 <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last name" required>
               </div>
               <div class="form-group mb-4">
-                <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email"
+                  title="Please enter a valid Gmail address" required>
               </div>
               <div class="form-group mb-4">
-                <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required>
+                <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone" pattern="[0-9]{10}"
+                  title="Phone number must be exactly 10 digits" required>
               </div>
+
               <div class="form-group mb-4">
-                <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Username" required
+                  pattern="[a-zA-Z0-9]{6,20}"
+                  title="Username must be 6-20 characters and contain no spaces or special characters." />
               </div>
               <div class="form-group mb-4">
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password"
@@ -257,19 +262,10 @@ include('../Models/database.php');
       if (checkExists($conn, 'phone', $phone)) {
         displayError("Phone number already exists. Please choose another phone number.");
       }
-      // Validate phone number
-      if (strlen($phone) !== 10 || !ctype_digit($phone)) {
-        displayError("Phone number must be 10 digits.");
-      }
-      // Validate username
-      if (strlen($username) < 6 || strlen($username) > 36 || !ctype_alnum($username)) {
-        displayError("Username must be between 6 and 36 characters and can only contain letters and numbers.");
-      }
       // Check if username exists
       if (checkExists($conn, 'username', $username)) {
         displayError("Username already exists. Please choose another username.");
       }
-
       // Validate password strength
       if (strlen($password) < 8 || strlen($password) > 36 || !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password) || !preg_match('/\d/', $password)) {
         displayError("Password must be between 8 and 36 characters and contain at least one special character and one number.");
@@ -287,7 +283,7 @@ include('../Models/database.php');
       $stmt->bind_param("ssssss", $firstname, $lastname, $email, $phone, $username, $hashed_password);
 
       if ($stmt->execute()) {
-        header("Location: login.php");
+        echo '<script>alert("Registration successful, please log in again."); window.location.href = "login.php";</script>';
       } else {
         displayError("ERROR: " . $stmt->error);
       }
@@ -295,9 +291,6 @@ include('../Models/database.php');
       $stmt->close();
       $conn->close();
     }
-
-
-
     // Function to check if a value exists in the database
     function checkExists($conn, $field, $value)
     {
@@ -310,8 +303,6 @@ include('../Models/database.php');
       return ($result->num_rows > 0);
     }
     ?>
-
-
 </body>
 
 
