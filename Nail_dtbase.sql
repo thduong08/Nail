@@ -150,3 +150,4 @@ CREATE TABLE OrderDetail (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
+

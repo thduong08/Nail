@@ -1,18 +1,4 @@
-.gradient-custom-2 {
-    /* fallback for old browsers */
-    background: #ffffff;
-
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: #ffffff
-}
-
-
 @media (min-width: 300px) {
-    .gradient-custom-2 {
-        border-top-right-radius: .3rem;
-        border-bottom-right-radius: .3rem;
-    }
-
     .btn-book-now {
         padding: 7px 24px 9px;
         border-radius: 50px;
@@ -47,12 +33,6 @@
         width: 100%;
         order: 2;
 
-    }
-
-    .customer-login form {
-        max-width: 500px;
-        width: 100%;
-        margin: 0 auto;
     }
 
     .booking-login {
