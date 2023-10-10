@@ -7,30 +7,28 @@ $page = isset($_GET['page']) && $_GET['page'] >= 1 && is_numeric($_GET['page']) 
 
 $offset = $limit * ($page - 1);
 
-$categoryID = isset($_GET['CategoryID']) ? $_GET['CategoryID'] : null;
+$categoryID = $_GET['CategoryID'];
 $sql = "SELECT * FROM Categories WHERE CategoryID = $categoryID";
 $result = $conn->query($sql);
 
-if ($result !== false && $result->num_rows > 0) {
+if ($result->num_rows > 0) {
   $row = $result->fetch_assoc();
   $categoryName = $row['CategoryName'];
-} else if ($categoryID === null) {
-  $categoryName = "Category not provided";
+} else {
+  $categoryName = "Category not found";
 }
 
-$sqlProducts = "SELECT ProductName, Price, ImageURL FROM Products WHERE CategoryID = " . $categoryID . " LIMIT " . $limit . " OFFSET " . $offset;
+$sqlProducts = "SELECT ProductName, Price, ImageURL FROM Products WHERE CategoryID = $categoryID LIMIT $limit OFFSET $offset";
 $resultProducts = $conn->query($sqlProducts);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop</title>
+  <title>Nail Spa</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="./css/home.css">
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
@@ -111,8 +109,8 @@ $resultProducts = $conn->query($sqlProducts);
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown px-2">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            <li class="nav-item px-2">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">Shop</a>
               <ul class="dropdown-menu">
                 <?php
@@ -126,8 +124,8 @@ $resultProducts = $conn->query($sqlProducts);
                   }
                 }
                 ?>
-              </ul>
-            </li>
+               </ul>
+              </li>
             <li class="nav-item px-2">
               <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
             </li>
@@ -157,10 +155,10 @@ $resultProducts = $conn->query($sqlProducts);
     </nav>
   </section>
 </div>
-  <hr>
-  <!-- body -->
+<hr>
 
-  <div class="container-fluid text-center" style="padding: 100px">
+<!-- body -->
+<div class="container-fluid p-4 text-center">
     <h1>
       <?php echo $categoryName; ?>
     </h1>
@@ -207,9 +205,8 @@ $resultProducts = $conn->query($sqlProducts);
     $conn->close();
     ?>
   </div>
-
-  <!-- footer -->
-  <footer class="footer" style="color: #fff">
+<!-- footer -->
+<footer class="footer" style="color: #fff">
   <section class="nail-footer">
     <div class="container-fluid">
       <div class="row">
@@ -250,6 +247,7 @@ $resultProducts = $conn->query($sqlProducts);
   </section>
   </footer>
 
+
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -257,8 +255,6 @@ $resultProducts = $conn->query($sqlProducts);
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 
 </html>

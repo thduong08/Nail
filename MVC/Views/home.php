@@ -1,3 +1,6 @@
+<?php
+include('../Models/database.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,8 +70,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item px-2">
-              <a class="nav-link active" aria-current="page" href="#">Shop</a>
-            </li>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Shop</a>
+              <ul class="dropdown-menu">
+                <?php
+                $sql = "SELECT * FROM Categories";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    echo '<li class="dropdown-item">';
+                    echo '<a class="nav-link" href="Shop.php?CategoryID=' . $row['CategoryID'] . '">' . $row['CategoryName'] . '</a>';
+                    echo '</li>';
+                  }
+                }
+                ?>
+               </ul>
+              </li>
             <li class="nav-item px-2">
               <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
             </li>
@@ -89,7 +106,7 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Location</a></li>
                 <li><a class="dropdown-item" href="#">Contact us</a></li>
-                <li><a class="dropdown-item" href="#">FAQ</a></li>
+                <li><a class="dropdown-item" href="FAQ.php">FAQ</a></li>
               </ul>
             </li>
           </ul>
