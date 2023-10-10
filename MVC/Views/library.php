@@ -1,104 +1,16 @@
 <?php
 include('../Models/database.php');
 ?>
-<?php
-
-
-if (isset($_POST["btn"])) {
-  $firstname = $_POST["firstname"];
-  $lastname = $_POST["lastname"];
-  $email = $_POST["email"];
-  $phone = $_POST["phone"];
-  $username = $_POST["username"];
-  $password = $_POST["password"];
-  $confirm_password = $_POST["confirm_password"];
-
-  // Check if email exists
-  if (checkExists($conn, 'email', $email)) {
-    displayError("Email already exists. Please choose another email.");
-  }
-  // Check if phone number exists
-  if (checkExists($conn, 'phone', $phone)) {
-    displayError("Phone number already exists. Please choose another phone number.");
-  }
-  // Validate phone number
-  if (strlen($phone) !== 10 || !ctype_digit($phone)) {
-    displayError("Phone number must be 10 digits.");
-  }
-  // Validate username
-  if (strlen($username) < 6 || strlen($username) > 36 || !ctype_alnum($username)) {
-    displayError("Username must be between 6 and 36 characters and can only contain letters and numbers.");
-  }
-  // Check if username exists
-  if (checkExists($conn, 'username', $username)) {
-    displayError("Username already exists. Please choose another username.");
-  }
-
-  // Validate password strength
-  if (strlen($password) < 8 || strlen($password) > 36 || !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password) || !preg_match('/\d/', $password)) {
-    displayError("Password must be between 8 and 36 characters and contain at least one special character and one number.");
-  }
-  // Validate password and confirm password match
-  if ($password !== $confirm_password) {
-    displayError("Passwords do not match. Please re-enter passwords.");
-  }
-
-  // Password encryption
-  $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-  // Insert user into the database
-  $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, email, phone, username, password) VALUES (?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("ssssss", $firstname, $lastname, $email, $phone, $username, $hashed_password);
-
-  if ($stmt->execute()) {
-    header("Location: login.php");
-  } else {
-    displayError("ERROR: " . $stmt->error);
-  }
-
-  $stmt->close();
-  $conn->close();
-}
-
-// Function to display error message
-function displayError($message)
-{
-  echo "
-<div class= ' toast show text-center mx-auto' role='alert' aria-live='assertive' aria-atomic='true' >
-    <div class='toast-header'>
-        <strong class='me-auto'>Error</strong>
-        <button type='button' class='btn-close' data-bs-dismiss='toast' aria-label='Close'></button>
-    </div>
-    <div class='toast-body'>
-        $message
-    </div>
-</div>";
-  exit();
-}
-
-// Function to check if a value exists in the database
-function checkExists($conn, $field, $value)
-{
-  $stmt = $conn->prepare("SELECT * FROM users WHERE $field = ?");
-  $stmt->bind_param("s", $value);
-  $stmt->execute();
-  $result = $stmt->get_result();
-  $stmt->close();
-
-  return ($result->num_rows > 0);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Account</title>
+  <title>Nail Art</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/register.css">
+  <link rel="stylesheet" href="./css/library.css">
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
@@ -204,51 +116,113 @@ function checkExists($conn, $field, $value)
 </div>
 
 <hr>
-
-  <div class="content-for-layout focus-one">
-    <div id="wropper bg-success" style="background-color: #ffffff;">
-      <div class="regiter-container">
-        <div class="row justify-content-around">
-
-          <h1 class="text-center text-uppercase h3 py-1 ">Create Acount</h1>
-          <form action="" class="col-md-5 bg -light p-3 my-1" method="POST">
-
-            <div class="form-group mb-4">
-              <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First name" required>
+    <div class="main">
+        <div class="container d-flex">
+            <div class="level text-render ">
+                <h3>Light Nail Art</h3>
             </div>
-            <div class="form-group mb-4">
-              <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last name" required>
+            <div class="content p-2">
+                <p>Light nail art is a subtle and delicate nail design style, often favored for its elegance and simplicity. 
+                  The designs in light nail art typically use soft, muted colors and petite, refined patterns, creating a minimalist and charming look for the nails. 
+                  Common patterns include flowers, leaves, stripes, polka dots, or various shapes executed with gentle and delicate painting techniques.</p>
             </div>
-            <div class="form-group mb-4">
-              <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
-            </div>
-            <div class="form-group mb-4">
-              <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required>
-            </div>
-            <div class="form-group mb-4">
-              <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
-            </div>
-            <div class="form-group mb-4">
-              <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
-            </div>
-            <div class="form-group mb-4">
-              <input type="password" name="confirm_password" id="confirm_password" class="form-control"
-                placeholder="Confirm Password" required>
-            </div>
-            <div class="text-center pt-1 mb-1 pb-1">
-              <input class="create-register text-white mb-3" type="submit" name="btn" value="Create" />
-            </div>
-          </form>
-          <div class="d-flex align-items-center justify-content-center pb-4">
-            <p class="mb-0 me-2">Do you have an account?</p>
-            <a class="create-register text-white" href="login.php">Sign in</a><br>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <footer class="footer" style="color: #fff">
+        <div class="content">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail10.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail11.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail12.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail13.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail14.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail15.jpg" alt="">
+              </div>
+            </div>
+        </div>
+
+        <div class="container d-flex">
+            <div class="level text-render ">
+                <h3>Medium Nail Art</h3>
+            </div>
+            <div class="content p-2 ms-4">
+                <p>Medium nail art refers to a style of nail design that strikes a balance between subtlety and vibrancy. 
+                  It encompasses designs that are more intricate and elaborate compared to light nail art, yet not overly flashy or extravagant.
+                  Medium nail art often features a mix of colors, patterns, and textures, providing a moderate level of complexity and creativity. 
+                  The designs may include detailed geometric shapes, ombre effects, glitter accents, or themed motifs. </p>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail16.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail17.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail18.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail19.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail20.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail21.jpg" alt="">
+              </div>
+            </div>
+        </div>
+
+        <div class="container d-flex">
+            <div class="level text-render">
+                <h3>Full Nail Art</h3>
+            </div>
+            <div class="content p-3">
+                <p>Full nail art involves intricate and elaborate designs that cover the entire nail surface, showcasing a wide range of creativity and complexity.
+                   The designs can vary from detailed patterns, gradients, abstract art, themed motifs, or even miniature artworks, providing a bold and eye-catching look. </p>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail22.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail23.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail24.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail25.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail26.jpg" alt="">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/nail_art/nail27.jpg" alt="">
+              </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="footer" style="color: #fff">
   <section class="nail-footer">
     <div class="container-fluid">
       <div class="row">
@@ -289,6 +263,7 @@ function checkExists($conn, $field, $value)
   </section>
   </footer>
 
+
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -297,8 +272,5 @@ function checkExists($conn, $field, $value)
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
-
 </body>
-
 </html>

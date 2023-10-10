@@ -1,111 +1,64 @@
 <?php
 include('../Models/database.php');
+
+$limit = 8;
+
+$page = isset($_GET['page']) && $_GET['page'] >= 1 && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+
+$offset = $limit * ($page - 1);
+
+$categoryID = $_GET['CategoryID'];
+$sql = "SELECT * FROM Categories WHERE CategoryID = $categoryID";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  $row = $result->fetch_assoc();
+  $categoryName = $row['CategoryName'];
+} else {
+  $categoryName = "Category not found";
+}
+
+$sqlProducts = "SELECT ProductName, Price, ImageURL FROM Products WHERE CategoryID = $categoryID LIMIT $limit OFFSET $offset";
+$resultProducts = $conn->query($sqlProducts);
 ?>
-<?php
-
-
-if (isset($_POST["btn"])) {
-  $firstname = $_POST["firstname"];
-  $lastname = $_POST["lastname"];
-  $email = $_POST["email"];
-  $phone = $_POST["phone"];
-  $username = $_POST["username"];
-  $password = $_POST["password"];
-  $confirm_password = $_POST["confirm_password"];
-
-  // Check if email exists
-  if (checkExists($conn, 'email', $email)) {
-    displayError("Email already exists. Please choose another email.");
-  }
-  // Check if phone number exists
-  if (checkExists($conn, 'phone', $phone)) {
-    displayError("Phone number already exists. Please choose another phone number.");
-  }
-  // Validate phone number
-  if (strlen($phone) !== 10 || !ctype_digit($phone)) {
-    displayError("Phone number must be 10 digits.");
-  }
-  // Validate username
-  if (strlen($username) < 6 || strlen($username) > 36 || !ctype_alnum($username)) {
-    displayError("Username must be between 6 and 36 characters and can only contain letters and numbers.");
-  }
-  // Check if username exists
-  if (checkExists($conn, 'username', $username)) {
-    displayError("Username already exists. Please choose another username.");
-  }
-
-  // Validate password strength
-  if (strlen($password) < 8 || strlen($password) > 36 || !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password) || !preg_match('/\d/', $password)) {
-    displayError("Password must be between 8 and 36 characters and contain at least one special character and one number.");
-  }
-  // Validate password and confirm password match
-  if ($password !== $confirm_password) {
-    displayError("Passwords do not match. Please re-enter passwords.");
-  }
-
-  // Password encryption
-  $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-  // Insert user into the database
-  $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, email, phone, username, password) VALUES (?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("ssssss", $firstname, $lastname, $email, $phone, $username, $hashed_password);
-
-  if ($stmt->execute()) {
-    header("Location: login.php");
-  } else {
-    displayError("ERROR: " . $stmt->error);
-  }
-
-  $stmt->close();
-  $conn->close();
-}
-
-// Function to display error message
-function displayError($message)
-{
-  echo "
-<div class= ' toast show text-center mx-auto' role='alert' aria-live='assertive' aria-atomic='true' >
-    <div class='toast-header'>
-        <strong class='me-auto'>Error</strong>
-        <button type='button' class='btn-close' data-bs-dismiss='toast' aria-label='Close'></button>
-    </div>
-    <div class='toast-body'>
-        $message
-    </div>
-</div>";
-  exit();
-}
-
-// Function to check if a value exists in the database
-function checkExists($conn, $field, $value)
-{
-  $stmt = $conn->prepare("SELECT * FROM users WHERE $field = ?");
-  $stmt->bind_param("s", $value);
-  $stmt->execute();
-  $result = $stmt->get_result();
-  $stmt->close();
-
-  return ($result->num_rows > 0);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Account</title>
+  <title>Nail Spa</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/register.css">
+  <link rel="stylesheet" href="./css/home.css">
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+  <style>
+    .card-img-top {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .btn-next-prev {
+      margin-right: 5px;
+      background-color: gray;
+      color: white;
+    }
+
+    .btn-next-prev:hover {
+      background-color: darkgray;
+    }
+  </style>
 </head>
 
 <body>
-<section class="nail-header">
+  <!--header-->
+  <section class="nail-header">
     <div class="nail-miniluxe header_pink">
       <div class="container-fluid text-white text-center" style="height: 30px; line-height:30px;">
         <p>FREE SHIPPING ON ORDERS $50+</p>
@@ -193,7 +146,7 @@ function checkExists($conn, $field, $value)
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Location</a></li>
                 <li><a class="dropdown-item" href="#">Contact us</a></li>
-                <li><a class="dropdown-item" href="FAQ.php">FAQ</a></li>
+                <li><a class="dropdown-item" href="#">FAQ</a></li>
               </ul>
             </li>
           </ul>
@@ -202,53 +155,58 @@ function checkExists($conn, $field, $value)
     </nav>
   </section>
 </div>
-
 <hr>
 
-  <div class="content-for-layout focus-one">
-    <div id="wropper bg-success" style="background-color: #ffffff;">
-      <div class="regiter-container">
-        <div class="row justify-content-around">
-
-          <h1 class="text-center text-uppercase h3 py-1 ">Create Acount</h1>
-          <form action="" class="col-md-5 bg -light p-3 my-1" method="POST">
-
-            <div class="form-group mb-4">
-              <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First name" required>
-            </div>
-            <div class="form-group mb-4">
-              <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last name" required>
-            </div>
-            <div class="form-group mb-4">
-              <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
-            </div>
-            <div class="form-group mb-4">
-              <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required>
-            </div>
-            <div class="form-group mb-4">
-              <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
-            </div>
-            <div class="form-group mb-4">
-              <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
-            </div>
-            <div class="form-group mb-4">
-              <input type="password" name="confirm_password" id="confirm_password" class="form-control"
-                placeholder="Confirm Password" required>
-            </div>
-            <div class="text-center pt-1 mb-1 pb-1">
-              <input class="create-register text-white mb-3" type="submit" name="btn" value="Create" />
-            </div>
-          </form>
-          <div class="d-flex align-items-center justify-content-center pb-4">
-            <p class="mb-0 me-2">Do you have an account?</p>
-            <a class="create-register text-white" href="login.php">Sign in</a><br>
-          </div>
-        </div>
+<!-- body -->
+<div class="container-fluid p-4 text-center">
+    <h1>
+      <?php echo $categoryName; ?>
+    </h1>
+    <div class="container">
+      <div class="row">
+        <?php
+        if ($resultProducts->num_rows > 0) {
+          while ($rowProduct = $resultProducts->fetch_assoc()) {
+            $productName = $rowProduct["ProductName"];
+            $price = $rowProduct["Price"];
+            $imageURL = $rowProduct["ImageURL"];
+            echo '<div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="' . $imageURL . '" class="card-img-top" alt="' . $productName . '">
+                        <div class="card-body">
+                            <h5 class="card-title">' . $productName . '</h5>
+                            <p class="card-text">$' . $price . '</p>
+                        </div>
+                    </div>
+                </div>';
+          }
+        } else {
+          echo "No products found.";
+        }
+        ?>
       </div>
     </div>
+    <div class="text-center mt-4">
+      <?php
+      if ($page > 1) {
+        echo '<a href="Shop.php?CategoryID=' . $categoryID . '&page=' . ($page - 1) . '" class="btn btn-next-prev">Previous</a>';
+      }
+      $nextPage = $page + 1;
+      if ($resultProducts->num_rows == $limit) {
+        echo '<a href="Shop.php?CategoryID=' . $categoryID . '&page=' . $nextPage . '" class="btn btn-next-prev">Next</a>';
+      }
+      ?>
+      <div class="mt-2">Page
+        <?php echo $page; ?> of
+        <?php echo ceil($resultProducts->num_rows / $limit); ?>
+      </div>
+    </div>
+    <?php
+    $conn->close();
+    ?>
   </div>
-
-  <footer class="footer" style="color: #fff">
+<!-- footer -->
+<footer class="footer" style="color: #fff">
   <section class="nail-footer">
     <div class="container-fluid">
       <div class="row">
@@ -289,6 +247,7 @@ function checkExists($conn, $field, $value)
   </section>
   </footer>
 
+
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -296,9 +255,6 @@ function checkExists($conn, $field, $value)
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
 </body>
 
 </html>
