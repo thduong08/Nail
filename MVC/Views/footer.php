@@ -15,11 +15,11 @@
           </p>
         </div>
         <div class="col-md-2"></div>
-        <div class="col-md-5 my-4" >
+        <div class="col-md-5 my-4">
           <div class="row">
             <div class="col-md-6">
               <ul style="list-style-type: none;">
-                <li class="my-2" ><a href="" style="text-decoration: none; color: #fff">SHOP</a></li>
+                <li class="my-2"><a href="" style="text-decoration: none; color: #fff">SHOP</a></li>
                 <li class="my-2"><a href="" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
                 <li class="my-2"><a href="" style="text-decoration: none; color: #fff">SERVICES</a></li>
                 <li class="my-2"><a href="" style="text-decoration: none; color: #fff">GIFT CARDS</a></li>
@@ -29,7 +29,7 @@
               <ul style="list-style-type: none;">
                 <li class="my-2"><a href="" style="text-decoration: none; color: #fff">ABOUT US</a></li>
                 <li class="my-2"><a href="" style="text-decoration: none; color: #fff">CONTACT US</a></li>
-                <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff" >FAQ</a></li>
+                <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff">FAQ</a></li>
               </ul>
             </div>
           </div>
@@ -37,17 +37,26 @@
       </div>
     </div>
     </div>
+    <div class="nail-copyright text-center">
+      <ul class="m-0 p-0">
+        <li>2023 <i class="bi bi-c-circle"></i> GLOSSLAB ALL Rights Reserved</li>
+        <li>Privacy Policy</li>
+        <li>Terms Of Service</li>
+        <li>Cookie Policy</li>
+      </ul>
+    </div>
+    </div>
   </section>
-  </footer>
+</footer>
 
 
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script type="text/javascript" src="./js/home.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" src="./js/home.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

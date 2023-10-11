@@ -74,7 +74,7 @@ include('../Models/database.php');
         </div>
       </div>
 
-      <div class="row product-slide">
+      <div class="row product-slide" >
       <?php
        $sql = "SELECT * FROM Products where ProductID <= 10 ";
        $result = $conn->query($sql);
@@ -83,7 +83,7 @@ include('../Models/database.php');
             $productName = $row["ProductName"];
             $price = $row["Price"];
             $imageURL = $row["ImageURL"];
-            echo '<div class="col-md-3 mb-4">
+            echo '<div class="col-md-3 mb-4" style="margin: 0 10px;">
                     <div class="card">
                         <img src="' . $imageURL . '" class="card-img-top img-fluid" alt="' . $productName . '">
                         <div class="card-body">

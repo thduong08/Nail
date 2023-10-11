@@ -37,24 +37,24 @@ include('../Models/database.php');
           </div>
         </div>
         <div class="col-md-2 pt-1 fs-2 text-center">
-          <a href="index.php?act=nail-spa" style="text-decoration: none; color: black"><span>NAIL SPA</span></a>
+          <a href="index.php?act=nail-spa" style="text-decoration: none; color: black"><span class="fs-1">NAIL SPA</span></a>
         </div>
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
             <div class="col-md-6 text-end lh-lg" ><a href="index.php?act=about-us" style="text-decoration: none; color: black">About Us</a></div>
             <div class="col-md-2">
               <a href="login.php" style="text-decoration: none; color: black">
-                <p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>
+                <p class="m-0 p-0 fs-5  text-end"><i class="bi bi-person-circle"></i></p>
               </a>
             </div>
             <div class="col-md-2">
               <a href="" style="text-decoration: none; color: black">
-                <p class="m-0 p-0 fs-5"><i class="bi bi-search"></i></p>
+                <p class="m-0 p-0 fs-5  text-end"><i class="bi bi-search"></i></p>
               </a>
             </div>
             <div class="col-md-2">
               <a href="" style="text-decoration: none; color: black">
-                <p class="m-0 p-0 fs-5"><i class="bi bi-bag"></i></p>
+                <p class="m-0 p-0 fs-5 text-end"><i class="bi bi-bag"></i></p>
               </a>
             </div>
           </div>
