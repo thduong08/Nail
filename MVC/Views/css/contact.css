@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.header-contact{
+    text-align: center;
+
+}
+
+.main{
+    width: 650px;
+    padding: 45px;
+    box-shadow: 0 0 15px 0 ;
+    left: 50%;
+    margin: 0 auto;
+   
+}
+.col-md-5{
+    line-height: 60px;
+}
+.contactus{
+    font-family: Vanitas-Extrabold;
+}
+
+
