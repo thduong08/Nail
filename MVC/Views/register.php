@@ -36,7 +36,7 @@ include('../Models/database.php');
             <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
           </div>
               <div class='toast-body'>
-                  $message
+              <span style='color: red;'>$message</span>
               </div>
           </div>";
       exit();
