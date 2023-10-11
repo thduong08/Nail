@@ -71,12 +71,12 @@ $resultProducts = $conn->query($sqlProducts);
       <div class="row">
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
-            <div class="col-md-4 "><a href=""><button type="button" class="btn btn-book-now rounded-5 lh-lg">BOOK NOW</button></a></div>
+            <div class="col-md-4 "><a href="index.php?act=book-now"><button type="button" class="btn btn-book-now rounded-5 lh-lg">BOOK NOW</button></a></div>
             <div class="col-md-8 pt-1 p-0 lh-lg"><a href="" style="text-decoration: none; color: black"> SERVICE</a></div>
           </div>
         </div>
         <div class="col-md-2 pt-1 fs-2 text-center">
-          <a href="home.php" style="text-decoration: none; color: black"><span>NAIL SPA</span></a>
+          <a href="index.php" style="text-decoration: none; color: black"><span>NAIL SPA</span></a>
         </div>
         <div class="col-md-5 d-none d-md-block">
           <div class="row">

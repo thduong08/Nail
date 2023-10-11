@@ -1,4 +1,6 @@
-
+<?php
+include('../Models/database.php');
+?>
 <!--body-->
   <section class="nail-maincontent">
     <div class="slider">
@@ -72,103 +74,30 @@
         </div>
       </div>
 
-      <div class="row product-slide" style="margin-left: 60px; padding:0">
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail4.webp" alt=""></a>
-
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price: 14$</strong></div>
-              <div class="col-md-6"><del>Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail6.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price: 14$</strong></div>
-              <div class="col-md-6"><del>Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail7.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price: 14$</strong></div>
-              <div class="col-md-6"><del>Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price new: 14$</strong></div>
-              <div class="col-md-6"><del> Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price new: 14$</strong></div>
-              <div class="col-md-6"><del> Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price new: 14$</strong></div>
-              <div class="col-md-6"><del> Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price new: 14$</strong></div>
-              <div class="col-md-6"><del> Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price new: 14$</strong></div>
-              <div class="col-md-6"><del> Price: 18$</del></div>
-            </div>
-          </div>
+      <div class="row product-slide">
+      <?php
+       $sql = "SELECT * FROM Products where ProductID <= 10 ";
+       $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            $productName = $row["ProductName"];
+            $price = $row["Price"];
+            $imageURL = $row["ImageURL"];
+            echo '<div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="' . $imageURL . '" class="card-img-top img-fluid" alt="' . $productName . '">
+                        <div class="card-body">
+                            <h5 class="card-title">' . $productName . '</h5>
+                            <p class="card-text">$' . $price . '</p>
+                            <div class="col-md-6"><del>Price: 18$</del></div>
+                        </div>
+                    </div>
+                </div>';
+          }
+        } else {
+          echo "No products found.";
+        }
+        ?>
         </div>
       </div>
 

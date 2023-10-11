@@ -17,7 +17,7 @@ if (isset($_POST["btn"])) {
     $stored_hashed_password = $row['password'];
 
     if (password_verify($password, $stored_hashed_password)) {
-      header("Location: home.php");
+      header("Location: index.php");
       exit();
     } else {
       $incorrectPassword = true;
@@ -59,7 +59,7 @@ if (isset($_POST["btn"])) {
           </div>
         </div>
         <div class="col-md-2 pt-1 fs-2 text-center">
-          <a href="home.php" style="text-decoration: none; color: black"><span>NAIL SPA</span></a>
+          <a href="index.php" style="text-decoration: none; color: black"><span>NAIL SPA</span></a>
         </div>
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
