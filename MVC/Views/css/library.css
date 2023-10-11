@@ -1,0 +1,45 @@
+.container{
+  margin: 50px auto;
+}
+.content{
+  padding: 30px 200px;
+}
+.level{
+  margin: 20px 100px 0 0;
+  width: 500px;
+
+}
+.image img{
+    height: 500px;
+    width: 100%;
+    padding: 10px 0;
+    object-fit: cover
+}
+
+.image{
+  background-color: white;
+
+}
+
+.level{
+  font-family: Vanitas-Extrabold, MierB, arial;
+}
+
+.btn-book-now {
+  padding: 7px 24px 9px;
+  text-decoration: none;
+  background-color: #dca8a8;
+  box-shadow: 0 2px 6px #00000026;
+  border: 0;
+  color: #fff;
+}
+
+.footer{
+  background-color: #dca8a8;
+  color: #fff;
+}
+
+.header_pink{
+  background-color: #dca8a8;
+  color: #fff;
+}

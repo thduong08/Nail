@@ -1,21 +1,38 @@
-a{
-    text-decoration: none;
-    color: black;
-}
 img{
     height: 500px;
 }
-.nail-history{
-    font-family: Vanitas-Extrabold,MierB,arial;
-}
-.img-fluid{
-    height: 400px;
-}
-.nail-copyright li{
-    display: inline-block;
-    padding: 20px;
+
+.nail-history {
+    font-family: Vanitas-Extrabold, MierB, arial;
 }
 
-    .slick-dots{
-        margin-right: 20px;
-    }
+.slick-dots{
+    margin-right: 20px;
+}
+
+.btn-book-now {
+    padding: 7px 24px 9px;
+    text-decoration: none;
+    background-color: #dca8a8;
+    box-shadow: 0 2px 6px #00000026;
+    border: 0;
+    color: #fff;
+}
+
+.footer{
+    background-color: #dca8a8;
+    color: #fff;
+}
+
+.header_pink{
+    background-color: #dca8a8;
+    color: #fff;
+}
+
+.item{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 280px;
+    padding: 0 20px;
+}
