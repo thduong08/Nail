@@ -1,8 +1,7 @@
 <?php
 include('../Models/database.php');
 ?>
-<div class="container">
-    <div class="row">
+<ol class="list-group list-group-numbered">
         <?php
         $sql = "SELECT * FROM Appointments";
         $result = $conn->query($sql);
@@ -11,20 +10,16 @@ include('../Models/database.php');
         if ($result->num_rows > 0) {
 
             while ($row = $result->fetch_assoc()) {
-                echo '<div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="../../img/image/nail1.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $row["AppointmentTime"] . '</h5>
-                            <p class="card-text">$' . $row["ServiceType"] . '</p>
-                            <p class="card-text">$' . $row["Status"] . '</p>
-                        </div>
-                    </div>
-                </div>';
+                echo '<li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">' . $row["ServiceType"] . '</div>
+                  ' . $row["Status"] . '
+                </div>
+                <span class="badge bg-primary rounded-pill">' . $row["AppointmentTime"] . '</span>
+              </li>';
             }
         } else {
             echo "No products found.";
         }
         ?>
-    </div>
-</div>
+</ol>
