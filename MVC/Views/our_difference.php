@@ -1,17 +1,16 @@
 <?php
 include('../Models/database.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account</title>
+  <title>Our Difference</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/forgot.css">
+  <link rel="stylesheet" href="./css/our_difference.css">
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
@@ -116,30 +115,75 @@ include('../Models/database.php');
     </nav>
   </section>
 </div>
-<hr> 
 
-<!-- body -->
-<div class="content-for-layout focus-one">
-    <section style="background-color: #ffffff;">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="login-contrainer">
-            <div class="customer-login">
-            <form action="" method="POST" style="padding: 100px">
-                    <h2>Reset your password</h2> <br>
-                    <h6>We will send you an email to reset your password</h6>
-                    <div class="form-outline mb-4">
-                      <input type="text" id="email" class="form-control" name="email" placeholder="Email" required/>
-                    </div>
-                    <div class="text-center pt-1 mb-5 pb-1">
-                      <input class="btn-book-now text-white mb-3" type="submit" name="reset"
-                        value="Reset" href="checkinbox.php" /> <br>
-                        <a class="text-muted text-black" href="login.php">Cancel</a>
-                    </div>
+<hr>
+<body>
+<div class="main" style="padding:100px">
+        <div class="container d-flex">
+            <div class="level text-render ">
+                <h3>RUSSIAN manicure:</h3>
+            </div>
+            <div class="content p-2">
+                <p>- We use E-file bits to push back and exfoliate the dead skin which gives us a more clean and polished look!  
+This technique avoids cutting the nail too aggressively and allows the nail technician to be more in control,
+ compared to when using nippers. This leaves your nails perfectly trimmed and smooth around the edges,
+  resulting in a very clean finished look.</p>
+        
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/our/nail1.jpg.jpg" alt="">
+            </div>
+        </div>  
 
-                
+       
+        <div class="container d-flex">
+            <div class="level text-render ">
+                <h3>No acetone:</h3>
+            </div>
+            <div class="content p-1 ">
+                <p>- Soaking off in acetone dehydrates nails and weakens them over a time.
+                     Not to mention the harmful exposure of toxins in acetone. 
+                    We safely remove old gel with e-file. </p>
             </div>
         </div>
-    </section>
+
+        <div class="container d-flex">
+            <div class="level text-render">
+                <h3>Dry pedicure:</h3>
+            </div>
+            <div class="content p-3">
+                <p>- Dry pedicure has been practiced in Europe for a long time. It is more hygienic,
+                     healthier and longer lasting alternative to soaking in water.
+                    A dry pedicure really gets to work on super dry skin and calluses,
+                    which are more visible to technician than when the skin is saturated. 
+                     A waterless approach will prolong polish power because soaking in water expands the nails,
+                      meaning that once they’ve shrunk back to size, cracks might occur.
+                    We use medical grade equipment for this service.</p>
+            </div>
+
+              <div class="col-12 col-sm-6 col-md-4 image">
+                  <img src="../../img/our/mc.jpg" alt="">
+    </div>
+</div>
+
+<div class="container d-flex">
+    <div class="level text-render">
+        <h3>Safe and non toxic:</h3>
+    </div>
+    <div class="content p-3">
+                <p>- We only use professional, European made products which are certified to be at least 7 free:
+
+                no Formaldehyde 
+                no Toluene
+                no DBP
+                no Formaldehyde resin
+                no Camphor
+                no Xylene
+                no Ethyl tosylamide
+
+                *85% of our products are 9 Free</p>
+    </div>
+</div>
 </div>
 
 <!--footer-->

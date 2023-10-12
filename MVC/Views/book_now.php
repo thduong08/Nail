@@ -1,24 +1,23 @@
 <?php
 include('../Models/database.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account</title>
+  <title>Location - Nail Spa</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/forgot.css">
+  <link rel="stylesheet" href="./css/book_now.css">
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 </head>
 
 <body>
-<!--header-->
+  <!--header-->
 <section class="nail-header">
     <div class="nail-miniluxe header_pink">
       <div class="container-fluid text-white text-center" style="height: 30px; line-height:30px;">
@@ -116,31 +115,30 @@ include('../Models/database.php');
     </nav>
   </section>
 </div>
-<hr> 
 
-<!-- body -->
-<div class="content-for-layout focus-one">
-    <section style="background-color: #ffffff;">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="login-contrainer">
-            <div class="customer-login">
-            <form action="" method="POST" style="padding: 100px">
-                    <h2>Reset your password</h2> <br>
-                    <h6>We will send you an email to reset your password</h6>
-                    <div class="form-outline mb-4">
-                      <input type="text" id="email" class="form-control" name="email" placeholder="Email" required/>
-                    </div>
-                    <div class="text-center pt-1 mb-5 pb-1">
-                      <input class="btn-book-now text-white mb-3" type="submit" name="reset"
-                        value="Reset" href="checkinbox.php" /> <br>
-                        <a class="text-muted text-black" href="login.php">Cancel</a>
-                    </div>
+<!--body-->
+<ol class="list-group list-group-numbered">
+        <?php
+        $sql = "SELECT * FROM Appointments";
+        $result = $conn->query($sql);
 
-                
-            </div>
-        </div>
-    </section>
-</div>
+
+        if ($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+                echo '<li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">' . $row["ServiceType"] . '</div>
+                  ' . $row["Status"] . '
+                </div>
+                <span class="badge bg-primary rounded-pill">' . $row["AppointmentTime"] . '</span>
+              </li>';
+            }
+        } else {
+            echo "No products found.";
+        }
+        ?>
+</ol>
 
 <!--footer-->
 <footer class="footer" style="color: #fff">

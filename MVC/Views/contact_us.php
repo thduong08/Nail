@@ -1,17 +1,16 @@
 <?php
 include('../Models/database.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account</title>
+  <title>Nail Art</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/forgot.css">
+  <link rel="stylesheet" href="./css/contact_us.css">
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
@@ -116,30 +115,79 @@ include('../Models/database.php');
     </nav>
   </section>
 </div>
-<hr> 
 
-<!-- body -->
-<div class="content-for-layout focus-one">
-    <section style="background-color: #ffffff;">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="login-contrainer">
-            <div class="customer-login">
-            <form action="" method="POST" style="padding: 100px">
-                    <h2>Reset your password</h2> <br>
-                    <h6>We will send you an email to reset your password</h6>
-                    <div class="form-outline mb-4">
-                      <input type="text" id="email" class="form-control" name="email" placeholder="Email" required/>
-                    </div>
-                    <div class="text-center pt-1 mb-5 pb-1">
-                      <input class="btn-book-now text-white mb-3" type="submit" name="reset"
-                        value="Reset" href="checkinbox.php" /> <br>
-                        <a class="text-muted text-black" href="login.php">Cancel</a>
+<hr>
+        <!-- body -->
+    <div class ="container d-flex" style="padding: 100px">
+            
+        <div class="row2">
+            <div class="col-md-7">
+                <form class="main">
+                    <h2 class="text-center">Your Feedback?</h2>
+                    <p class="text-center">We're here to help. Send us a note below and we'll get back to you.</p>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">First name *</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="First name">
                     </div>
 
-                
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Last name *</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="last name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Your Email">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
-    </section>
+
+        <div class="row ms-5">
+                <div>
+                    <h1 style="font-family: Vanitas-Extrabold;" class="text-center">CONTACT US</h1>
+                </div>
+                <div class="d-flex">
+                <div class="me-4"><h4>Nail Spa</h4></div>
+                <div>
+                <select class="form-select form-control" aria-label="Default select example">
+                    <option selected>Monday</option>
+                    <option value="1">Tuesday</option>
+                    <option value="2">Wednesday</option>
+                    <option value="3">Thursday</option>
+                    <option value="4">Friday</option>
+                    <option value="5">Saturday</option>
+                    <option value="6">Sunday</option>
+                </select>
+                </div>
+                </div>
+                <div>
+                    <div>
+                        <h5>SHOP AND SHIPPING INQUIRIES</h5>
+                        <p>For shipping, product and other order inquiries, please contact: <a href="#">customerservice@miniluxe.com</a></p>
+                    </div>
+                    <div>
+                        <h5>WHOLESALE</h5>
+                        <p>For inquiries regarding wholesale purchases or opening a wholesale account to retail our products, please contact: <a href="#">wholesale@miniluxe.com</a></p>
+                     </div>
+                <br><br> <br><br><br>
+                <!-- <div>
+                    <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">19 Lê Thanh nghị<br>
+                    SDT: 01325323561<br>
+                    Email: contact@nailspa.com <br>
+                    </p>
+                </div> -->
+                </div>  
+                </div> 
+            </div>
+        </div>
+    </div>  
 </div>
 
 <!--footer-->
