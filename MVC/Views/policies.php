@@ -1,24 +1,24 @@
 <?php
 include('../Models/database.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account</title>
+  <title>Policies</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/forgot.css">
+  <link rel="stylesheet" href="./css/policies.css">
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 </head>
 
 <body>
-<!--header-->
-<section class="nail-header">
+    <!--header-->
+    <section class="nail-header">
     <div class="nail-miniluxe header_pink">
       <div class="container-fluid text-white text-center" style="height: 30px; line-height:30px;">
         <p>FREE SHIPPING ON ORDERS $50+</p>
@@ -115,31 +115,38 @@ include('../Models/database.php');
     </nav>
   </section>
 </div>
-<hr> 
 
-<!-- body -->
-<div class="content-for-layout focus-one">
-    <section style="background-color: #ffffff;">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="login-contrainer">
-            <div class="customer-login">
-            <form action="" method="POST" style="padding: 100px">
-                    <h2>Reset your password</h2> <br>
-                    <h6>We will send you an email to reset your password</h6>
-                    <div class="form-outline mb-4">
-                      <input type="text" id="email" class="form-control" name="email" placeholder="Email" required/>
-                    </div>
-                    <div class="text-center pt-1 mb-5 pb-1">
-                      <input class="btn-book-now text-white mb-3" type="submit" name="reset"
-                        value="Reset" href="checkinbox.php" /> <br>
-                        <a class="text-muted text-black" href="login.php">Cancel</a>
-                    </div>
 
-                
+<hr>
+<!--body-->
+<body>
+    <div class="body">
+        <div class="box" style="padding-bottom:30px">
+            <div class="h3 text-center"><h3>POLICIES</h3><br></div>
+            <div>
+                <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-8"> <h4 class="p-1">Cancellations</h4>
+            <p>Nail Spa requests a 24-hour notice of any appointment cancellation or rescheduling. </p>
+            <ul>
+                <li>For appointments canceled within 24 hours of the appointment time, we <br>
+                    reserve the right to charge 100% of the service total.</li>
+                <li>In the event of a no-show, we reserve the right to charge 100% of the service total.</li>
+            </ul>
+            <h4>Cancellations</h4>
+            <p>PaThe client will be charged the difference for downgrading services without 24-hour</p>
+            <p> notice. This includes circumstances where client lateness is the cause of the downgrade.  </p>
+            <h4>Cancellations</h4>
+            <p>ld damage to your manicure occur, the salon must be contacted within 7 days <br>
+                 of your initial service to receive a complimentary nail fix. This excludes any nail <br>
+                  breaks that require an extension, in which the client is responsible for payment in <br>
+                   full. Any damage reported after 7 days will be repaired at cost. </p></div>
+
             </div>
         </div>
-    </section>
-</div>
+    </div>
+</body>
+ 
 
 <!--footer-->
 <footer class="footer" style="color: #fff">

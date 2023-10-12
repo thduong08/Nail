@@ -18,7 +18,7 @@ include('../Models/database.php');
 
 <body>
   <!--header-->
-  <section class="nail-header">
+<section class="nail-header">
     <div class="nail-miniluxe header_pink">
       <div class="container-fluid text-white text-center" style="height: 30px; line-height:30px;">
         <p>FREE SHIPPING ON ORDERS $50+</p>
@@ -31,7 +31,7 @@ include('../Models/database.php');
       <div class="row">
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
-            <div class="col-md-4 "><a href=""><button type="button" class="btn btn-book-now rounded-5 lh-lg">BOOK NOW</button></a></div>
+            <div class="col-md-4 "><a href="book_now.php"><button type="button" class="btn btn-book-now rounded-5 lh-lg">BOOK NOW</button></a></div>
             <div class="col-md-8 pt-1 p-0 lh-lg"><a href="" style="text-decoration: none; color: black"> SERVICE</a></div>
           </div>
         </div>
@@ -70,7 +70,7 @@ include('../Models/database.php');
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item px-2">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">Shop</a>
               <ul class="dropdown-menu">
                 <?php
@@ -89,23 +89,23 @@ include('../Models/database.php');
             <li class="nav-item px-2">
               <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
             </li>
-            <li class="nav-item px-2">
+            <!-- <li class="nav-item px-2">
               <a class="nav-link" aria-current="page" href="#">Gift Card</a>
+            </li> -->
+            <li class="nav-item px-2">
+              <a class="nav-link" aria-current="page" href="policies.php">Policies</a>
             </li>
             <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="#">Policies</a>
-            </li>
-            <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="#">Our diference</a>
+              <a class="nav-link" aria-current="page" href="our_difference.php">Our difference</a>
             </li>
 
             <li class="nav-item dropdown px-2">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 More
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Location</a></li>
-                <li><a class="dropdown-item" href="#">Contact us</a></li>
+                <li><a class="dropdown-item" href="location.php">Location</a></li>
+                <li><a class="dropdown-item" href="contact_us.php">Contact us</a></li>
                 <li><a class="dropdown-item" href="FAQ.php">FAQ</a></li>
               </ul>
             </li>
@@ -129,8 +129,8 @@ include('../Models/database.php');
                 <h1>Nail Narrative</h1>
               </div>
 
-              <a href=""><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
-              <a href=""><button type="button" class="btn btn-light rounded-5">SHOP NEW</button></a>
+              <a href="book_now.php"><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
+              <a href="shop.php"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
             </div>
           </div>
 
@@ -142,8 +142,8 @@ include('../Models/database.php');
                 <h1>Nail Narrative</h1>
               </div>
 
-              <a href=""><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
-              <a href=""><button type="button" class="btn btn-light rounded-5">SHOP NEW</button></a>
+              <a href="book_now.php"><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
+              <a href="shop.php"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
             </div>
           </div>
 
@@ -155,8 +155,8 @@ include('../Models/database.php');
                 <h1>Nail Narrative</h1>
               </div>
 
-              <a href=""><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
-              <a href=""><button type="button" class="btn btn-light rounded-5">SHOP NEW</button></a>
+              <a href="book_now.php"><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
+              <a href="shop.php"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
             </div>
           </div>
 
@@ -184,110 +184,36 @@ include('../Models/database.php');
         <div class="col-md-10">
           <h3 class="text-warning">Best Seller </h3>
         </div>
-        <div class="col-md-2">
+        <!-- <div class="col-md-2">
           <a href="" style="text-decoration:underline; color: black">Shop Best Sellers</a>
-        </div>
+        </div> -->
       </div>
 
-      <div class="row product-slide" style="margin-left: 60px; padding:0">
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail4.webp" alt=""></a>
-
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price: 14$</strong></div>
-              <div class="col-md-6"><del>Price: 18$</del></div>
-            </div>
-          </div>
+      <div class="row product-slide" >
+      <?php
+       $sql = "SELECT * FROM Products where ProductID <= 10 ";
+       $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            $productName = $row["ProductName"];
+            $price = $row["Price"];
+            $imageURL = $row["ImageURL"];
+            echo '<div class="col-md-3 mb-4" style="margin: 0 10px;">
+                    <div class="card">
+                        <img src="' . $imageURL . '" class="card-img-top img-fluid" alt="' . $productName . '">
+                        <div class="card-body">
+                            <h5 class="card-title">' . $productName . '</h5>
+                            <p class="card-text">$' . $price . '</p>
+                            <div class="col-md-6"><del>Price: 18$</del></div>
+                        </div>
+                    </div>
+                </div>';
+          }
+        } else {
+          echo "No products found.";
+        }
+        ?>
         </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail6.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price: 14$</strong></div>
-              <div class="col-md-6"><del>Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail7.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price: 14$</strong></div>
-              <div class="col-md-6"><del>Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price new: 14$</strong></div>
-              <div class="col-md-6"><del> Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price new: 14$</strong></div>
-              <div class="col-md-6"><del> Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price new: 14$</strong></div>
-              <div class="col-md-6"><del> Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price new: 14$</strong></div>
-              <div class="col-md-6"><del> Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="product-img">
-            <a href=""><img class="img-fluid" src="../../img/image/nail8.webp" alt=""></a>
-          </div>
-          <div class="product-name">Nailart</div>
-          <div class="product-price">
-            <div class="row">
-              <div class="col-md-6"><strong>Price new: 14$</strong></div>
-              <div class="col-md-6"><del> Price: 18$</del></div>
-            </div>
-          </div>
-        </div>
-      </div>
 
     </div>
     <div class="nail-certification" style="padding: 50px 32px 104px;
@@ -363,7 +289,7 @@ include('../Models/database.php');
                 <p>NAIL SPA in Ha Noi city</p>
               </div>
               <div class="col-md-4 ">
-                <a href="#"><button class=" btn-book-now rounded-5">BOOK NOW</button></a>
+                <a href="book_now.php"><button class=" btn-book-now rounded-5">BOOK NOW</button></a>
               </div>
             </div>
             <div class="row my-2">
@@ -371,7 +297,7 @@ include('../Models/database.php');
                 <p>NAIL SPA in Da Nang City</p>
               </div>
               <div class="col-md-4 ">
-                <a href="#"><button class=" btn-book-now rounded-5">BOOK NOW</button></a>
+                <a href="book_now.php"><button class=" btn-book-now rounded-5">BOOK NOW</button></a>
               </div>
             </div>
             <div class="row my-2">
@@ -379,7 +305,7 @@ include('../Models/database.php');
                 <p>NAIL SPA in Ho Chi Minh City</p>
               </div>
               <div class="col-md-4 ">
-                <a href="#"><button class=" btn-book-now rounded-5 ">BOOK NOW</button></a>
+                <a href="book_now.php"><button class=" btn-book-now rounded-5 ">BOOK NOW</button></a>
               </div>
             </div>
           </div>
@@ -392,7 +318,7 @@ include('../Models/database.php');
   </section>
 
 <!--footer-->
-  <footer class="footer" style="color: #fff">
+<footer class="footer" style="color: #fff">
   <section class="nail-footer">
     <div class="container-fluid">
       <div class="row">
@@ -412,8 +338,8 @@ include('../Models/database.php');
           <div class="row">
             <div class="col-md-6">
               <ul style="list-style-type: none;">
-                <li class="my-2" ><a href="" style="text-decoration: none; color: #fff">SHOP</a></li>
-                <li class="my-2"><a href="" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
+                <li class="my-2" ><a href="shop.php" style="text-decoration: none; color: #fff">SHOP</a></li>
+                <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
                 <li class="my-2"><a href="" style="text-decoration: none; color: #fff">SERVICES</a></li>
                 <li class="my-2"><a href="" style="text-decoration: none; color: #fff">GIFT CARDS</a></li>
               </ul>
@@ -421,7 +347,7 @@ include('../Models/database.php');
             <div class="col-md-6">
               <ul style="list-style-type: none;">
                 <li class="my-2"><a href="" style="text-decoration: none; color: #fff">ABOUT US</a></li>
-                <li class="my-2"><a href="" style="text-decoration: none; color: #fff">CONTACT US</a></li>
+                <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
                 <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff" >FAQ</a></li>
               </ul>
             </div>
