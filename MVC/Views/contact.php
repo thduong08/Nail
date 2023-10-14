@@ -37,7 +37,7 @@
         }
 
         .main{
-            width: 450px;
+            width: 500px;
             padding: 45px;
             left: 50%;
             margin: 0 auto;
@@ -120,6 +120,7 @@
                 </select>
                 </div>
                 </div>
+                <div><h5>Opening hours are from Monday to Sunday</h5></div>
                 <div>
                     <div>
                         <h5>SHOP AND SHIPPING INQUIRIES</h5>
@@ -133,7 +134,7 @@
                 <div>
                     <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">19 Lê Thanh nghị<br>
                     SDT:01325323561<br>
-                    Email: quanquanquanhihihihi@gmail.com <br>
+                    Email: Contact@nailspa.com<br>
                     </p>
                 </div>
                 </div>  
