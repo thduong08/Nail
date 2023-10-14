@@ -13,7 +13,45 @@
      <style type="text/css">
         .btn{
             background-color: #dca8a8;
+            cursor: pointer;
+            text-decoration: none;
+            border: 2px solid #dca8a8;
         }
+        .btn:hover{
+            
+            background-color: #dca8a8;
+            border: 2px solid #dca8a8;
+        }
+        .btn:active{
+            background-color: #ad4040 !important;
+            border: 2px solid #ad4040 !important;
+        }
+        *{
+            padding: 0;
+             margin: 0;
+            box-sizing: border-box;
+        }
+        .header-contact{
+            text-align: center;
+
+        }
+
+        .main{
+            width: 450px;
+            padding: 45px;
+            left: 50%;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 0 1px 0;
+        }
+        .col-md-5{
+            line-height: 60px;
+        }
+        .contactus{
+            font-family: Vanitas-Extrabold;
+        }
+
+
      </style>
 </head>
 
@@ -57,7 +95,9 @@
                         <label for="exampleFormControlTextarea1" class="form-label">Message</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
+
                 </form>
             </div>
         </div>
