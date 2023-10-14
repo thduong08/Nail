@@ -8,8 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style type="text/css">
         .paddingTB60 {padding:60px 0px 60px 0px;}
-        .gray-bg {background: #F1F1F1 !important;}
-        .about-title {}
+        .gray-bg {background: #dca8a8  !important;}
         .about-title h1 {color: #535353; font-size:45px;font-weight:600;}
         .about-title span {color: #AF0808; font-size:45px;font-weight:700;}
         .about-title h3 {color: #535353; font-size:23px;margin-bottom:24px;}
@@ -26,44 +25,42 @@
         #social-gp:hover {color: #d34836;transition:all .001s;}
         #social-em:hover {color: #f39c12;transition:all .001s;}
 
+        .image{
+            width: 700px;
+            height: 500px;
+        }
+
     </style>
     <title>About Us</title>
 </head>
 <body>
     
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="about-section paddingTB60 gray-bg">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <div class="about-section gray-bg m-1 d-flex">
                 <div class="container">
                     <div class="row">
-						<div class="col-md-7 col-sm-6">
-							<div class="about-title clearfix">
-								<h1>About Us <span>Nail Spa</span></h1>
-								<h3>Lorem ipsum dolor sit amet </h3>
-								<p class="about-paddingB">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet dolor libero, eget venenatis mauris finibus dictum. Vestibulum quis elit eget neque porttitor congue non sit amet dolor. Proin pretium purus a lorem ornare </p>
-								<p>sed lobortis pulvinar. Integer laoreet mi id eros porta euismod. Suspendisse potenti. Nulla eros mauris, convallis et sem tempus, viverra hendrerit sapien</p>
-						<div class="about-icons"> 
+						<div class="col-md-12 col-sm-6">
+							<div class="about-title clearfix m-4">
+								<h1>Where Beauty Meets Exceptional Service: Discover &nbsp;<span>Nail Spa</span></h1> <br>
+								<p class="about-paddingB">At the Nails Spa, we take pride in being a women-owned establishment that is committed to delivering exceptional beauty and wellness services. With years of industry experience and a deep understanding of our clients' needs, we strive to provide a welcoming and inclusive environment where everyone feels comfortable and valued.
+Our team of skilled professionals is dedicated to staying on top of the latest trends and techniques, ensuring that you receive the highest quality of service. Whether you're seeking a rejuvenating facial, a relaxing manicure/pedicure, or other personalized treatments, our women-owned salon is here to cater to your unique beauty desires. Step into Nails Spa, and let us inspire you to embrace your own individuality and radiate confidence from within.</p>
+                            </div>
+                        </div>
+                    </div> <br><br>
+                    <div class="about-icons"> 
                             <ul >
                                 <li><a href="https://www.facebook.com/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a> </li>
                                 <li><a href="https://twitter.com/"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a> </li>
                                 <li> <a href="https://plus.google.com/"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a> </li>
                                 <li> <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a> </li>
                             </ul>       
-               
-               
-	           
-	           
-	        
-	        </div>
-							</div>
-						</div>
-						<div class="col-md-5 col-sm-6">
-							<div class="about-img">
-								<img src="https://devitems.com/preview/appmom/img/mobile/2.png" alt="">
-							</div>
-						</div>	
-                    </div>
+	                    </div>
                 </div>
-            </div>
+
+                <div>
+                    <img class="image m-5" src="../../img/image/story.webp" alt="">
+                </div>
+        </div>
 </body>
 </html>
