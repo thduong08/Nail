@@ -1,6 +1,15 @@
 <?php
 include('../Models/database.php');
 ?>
+<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupSelect01">I would like to book an appointment for</label>
+  <select class="form-select" id="inputGroupSelect01">
+    <option selected>just me</option>
+    <option value="1">just me</option>
+    <option value="2">2-3 Guests</option>
+  </select>
+</div>
+<h5 class="text-center">SELECT A SERVICE</h5>
 <ol class="list-group list-group-numbered">
         <?php
         $sql = "SELECT * FROM Appointments";
