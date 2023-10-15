@@ -118,74 +118,75 @@ include('../Models/database.php');
 
 <hr>
 <body>
-<div class="main" style="padding:100px">
-        <div class="container d-flex">
-            <div class="level text-render ">
-                <h3>RUSSIAN manicure:</h3>
-            </div>
-            <div class="content p-2">
-                <p>- We use E-file bits to push back and exfoliate the dead skin which gives us a more clean and polished look!  
-This technique avoids cutting the nail too aggressively and allows the nail technician to be more in control,
- compared to when using nippers. This leaves your nails perfectly trimmed and smooth around the edges,
-  resulting in a very clean finished look.</p>
-        
-              </div>
-              <div class="col-12 col-sm-6 col-md-4 image">
-                  <img src="../../img/our/nail1.jpg.jpg" alt="">
-            </div>
-        </div>  
-
-       
-        <div class="container d-flex">
-            <div class="level text-render ">
-                <h3>No acetone:</h3>
-            </div>
-            <div class="content p-1 ">
-                <p>- Soaking off in acetone dehydrates nails and weakens them over a time.
-                     Not to mention the harmful exposure of toxins in acetone. 
-                    We safely remove old gel with e-file. </p>
-            </div>
+<div class="container">
+        <div class="row">
+        <div class="col a">
+            <h2>Sussian<br> manicure:</h2>
+        </div><br>
+        <div class="col b">
+            <p>- We use E-file bits to push back and exfoliate the dead skin which gives us a more clean and polished look! This technique avoids cutting the nail too aggressively and allows the nail technician to be more in control, compared to when using nippers. This leaves your nails perfectly trimmed and smooth around the edges, resulting in a very clean finished look.</p>
         </div>
-
-        <div class="container d-flex">
-            <div class="level text-render">
-                <h3>Dry pedicure:</h3>
-            </div>
-            <div class="content p-3">
-                <p>- Dry pedicure has been practiced in Europe for a long time. It is more hygienic,
-                     healthier and longer lasting alternative to soaking in water.
-                    A dry pedicure really gets to work on super dry skin and calluses,
-                    which are more visible to technician than when the skin is saturated. 
-                     A waterless approach will prolong polish power because soaking in water expands the nails,
-                      meaning that once they’ve shrunk back to size, cracks might occur.
-                    We use medical grade equipment for this service.</p>
-            </div>
-
-              <div class="col-12 col-sm-6 col-md-4 image">
-                  <img src="../../img/our/mc.jpg" alt="">
+        <div class="col c">
+            <img src="../../img/our/khanh2.png">
+        </div>
+        </div>
     </div>
-</div>
 
-<div class="container d-flex">
-    <div class="level text-render">
-        <h3>Safe and non toxic:</h3>
+    <div class="container">
+        <div>
+        <div>
+            <h2>No acetone:</h2>
+        </div>
+        <div>
+            <p>- Soaking off in acetone dehydrates nails and weakens them over a time.
+               Not to mention the harmful exposure of toxins in acetone. 
+                We safely remove old gel with e-file. </p>
+        </div>
+        </div>
     </div>
-    <div class="content p-3">
-                <p>- We only use professional, European made products which are certified to be at least 7 free:
 
-                no Formaldehyde 
-                no Toluene
-                no DBP
-                no Formaldehyde resin
-                no Camphor
-                no Xylene
-                no Ethyl tosylamide
-
-                *85% of our products are 9 Free</p>
+    <div class="container">
+        <div class="row">
+        <div class="col a">
+            <h2>Dry pedicure:</h2>
+        </div>
+        <div class="col b">
+            <p>- Dry pedicure has been practiced in Europe for a long time. It is more hygienic,
+                healthier and longer lasting alternative to soaking in water.
+               A dry pedicure really gets to work on super dry skin and calluses,
+               which are more visible to technician than when the skin is saturated. 
+                A waterless approach will prolong polish power because soaking in water expands the nails,
+                 meaning that once they’ve shrunk back to size, cracks might occur.
+               We use medical grade equipment for this service.</p>
+        </div>
+        <div class="col c">
+            <img src="../../img/our/khanh1.png">
+        </div>
+        </div>
     </div>
-</div>
-</div>
 
+
+        <div class="container">
+        <div>
+        <div>
+            <h2>Safe and non toxic:</h2>
+        </div>
+        <div>
+            <p>- We only use professional, European made
+               products which are certified to be at least 7 free:
+
+no Formaldehyde,
+no Toluene,
+no DBP,
+no Formaldehyde resin,
+no Camphor,
+no Xylene,
+no Ethyl tosylamide.
+
+*85% of our products are 9 Free. </p>
+        </div>
+        </div>
+    </div>
 <!--footer-->
 <footer class="footer" style="color: #fff">
   <section class="nail-footer">
@@ -237,5 +238,25 @@ This technique avoids cutting the nail too aggressively and allows the nail tech
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
+<style>
+.a{
+    width: 50px;
+    float: left;
+}
+.b{
+    width: 1142px;
+    float: left;
+    color: #37384E;
+    
+}
+.c{
+    width: 500px;
+    float: left;
+    padding-left: 50px;
+}
+.c img{
+    max-width: 300px;
+    max-height: 400px;
+}
+</style>
 </html>
