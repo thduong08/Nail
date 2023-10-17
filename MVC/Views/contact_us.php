@@ -7,17 +7,22 @@ include('../Models/database.php');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nail Art</title>
+  <title>Contact Us - Nail Spa</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="./css/contact_us.css">
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+  <style>
+    .dropdown-item:active{
+      background-color:#dca8a8;
+    }
+  </style>
 </head>
 
 <body>
-<!--header-->
+  <!--header-->
 <section class="nail-header">
     <div class="nail-miniluxe header_pink">
       <div class="container-fluid text-white text-center" style="height: 30px; line-height:30px;">
@@ -31,16 +36,16 @@ include('../Models/database.php');
       <div class="row">
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
-            <div class="col-md-4 "><a href="book_now.php"><button type="button" class="btn btn-book-now rounded-5 lh-lg">BOOK NOW</button></a></div>
-            <div class="col-md-8 pt-1 p-0 lh-lg"><a href="" style="text-decoration: none; color: black"> SERVICE</a></div>
+            <div class="col-md-4 "><a href="book_now.php"><button type="button" class="text-white btn-book-now">BOOK NOW</button></a></div>
+            <div class="col-md-8 pt-1 p-0"><a href="service.php" style="text-decoration: none; color: black"> SERVICE</a></div>
           </div>
         </div>
         <div class="col-md-2 pt-1 fs-2 text-center">
-          <a href="home.php" style="text-decoration: none; color: black"><span>NAIL SPA</span></a>
+          <a href="home.php" style="text-decoration: none; color: black;font-size: 40px"><span>NAIL SPA</span></a>
         </div>
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
-            <div class="col-md-6 text-end lh-lg" ><a href="" style="text-decoration: none; color: black">About Us</a></div>
+            <div class="col-md-6 text-end" ><a href="about_us.php" style="text-decoration: none; color: black">About Us</a></div>
             <div class="col-md-2">
               <a href="login.php" style="text-decoration: none; color: black">
                 <p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>
@@ -115,8 +120,8 @@ include('../Models/database.php');
     </nav>
   </section>
 </div>
-
 <hr>
+
         <!-- body -->
     <div class ="container d-flex" style="padding: 100px">
             
@@ -144,7 +149,7 @@ include('../Models/database.php');
                         <label for="exampleFormControlTextarea1" class="form-label">Message</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn-book-now" style="margin-left: 190px">Submit</button>
                 </form>
             </div>
         </div>
@@ -154,7 +159,7 @@ include('../Models/database.php');
                     <h1 style="font-family: Vanitas-Extrabold;" class="text-center">CONTACT US</h1>
                 </div>
                 <div class="d-flex">
-                <div class="me-4"><h4>Nail Spa</h4></div>
+                <!-- <div class="me-4"><h4>Nail Spa</h4></div>
                 <div>
                 <select class="form-select form-control" aria-label="Default select example">
                     <option selected>Monday</option>
@@ -166,7 +171,7 @@ include('../Models/database.php');
                     <option value="6">Sunday</option>
                 </select>
                 </div>
-                </div>
+                </div> -->
                 <div>
                     <div>
                         <h5>SHOP AND SHIPPING INQUIRIES</h5>
@@ -200,9 +205,9 @@ include('../Models/database.php');
           <p class="p-0 m-0">Get email updates on all things nails, evens, products and</p>
           <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
           <p>
-          <div class="input-group mb-3">
+          <div class="mb-3" style="display:flex">
             <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button style="margin-left: 10px;" class="btn btn-outline-secondary btn-light rounded-5" type="button" id="button-addon2">Subscribe</button>
+            <button style="margin-left: 10px;" class=" btn-outline-secondary btn-light caption" type="button" id="button-addon2">Subscribe</button>
           </div>
           </p>
         </div>
@@ -213,13 +218,13 @@ include('../Models/database.php');
               <ul style="list-style-type: none;">
                 <li class="my-2" ><a href="shop.php" style="text-decoration: none; color: #fff">SHOP</a></li>
                 <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
-                <li class="my-2"><a href="" style="text-decoration: none; color: #fff">SERVICES</a></li>
+                <li class="my-2"><a href="service.php" style="text-decoration: none; color: #fff">SERVICES</a></li>
                 <li class="my-2"><a href="" style="text-decoration: none; color: #fff">GIFT CARDS</a></li>
               </ul>
             </div>
             <div class="col-md-6">
               <ul style="list-style-type: none;">
-                <li class="my-2"><a href="" style="text-decoration: none; color: #fff">ABOUT US</a></li>
+                <li class="my-2"><a href="about_us.php" style="text-decoration: none; color: #fff">ABOUT US</a></li>
                 <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
                 <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff" >FAQ</a></li>
               </ul>
@@ -236,7 +241,7 @@ include('../Models/database.php');
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <!-- <script type="text/javascript" src="./js/home.js"></script> -->
+  <script type="text/javascript" src="./js/home.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

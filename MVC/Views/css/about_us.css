@@ -1,0 +1,97 @@
+@media (min-width: 300px) {
+    .btn-book-now {
+        padding: 7px 24px 9px;
+        border-radius: 50px;
+        text-decoration: none;
+        background-color: #dca8a8;
+        box-shadow: 0 2px 6px #00000026;
+        border: 0;
+        color: #fff;
+    }
+
+    .btn-book-now2 {
+        padding: 7px 24px 9px;
+        border-radius: 50px;
+        text-decoration: none;
+        background-color: #ffffff;
+        box-shadow: 0 2px 6px #00000026;
+        border: 0;
+        color: #856161;
+    }
+
+    img {
+        height: 500px;
+        width: 100%;
+        padding: 10px 0;
+        object-fit: cover
+    }
+
+
+    .h2 {
+        margin-bottom: 30px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 34px;
+        line-height: 34px;
+        color: #000;
+    }
+
+    .login-contrainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .customer-login {
+        margin: 0 0 40px;
+        max-width: 1200px;
+        min-height: auto;
+        padding: 0 20px;
+        flex: 1 0 100%;
+        width: 100%;
+        order: 2;
+
+    }
+
+    .booking-login {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer {
+        background-color: #dca8a8;
+        color: #fff;
+    }
+
+    .header_pink {
+        background-color: #dca8a8;
+        color: #fff;
+    }
+
+    .rich-text--full-width.color-background-1 {
+        margin-top: 100px;
+        margin-bottom: 120px;
+    }
+
+    .rich-text__blocks {
+        width: calc(100% - 15rem);
+        padding-left: 150px;
+        text-align: center;
+    }
+
+    .caption {
+        padding: 7px 24px 9px;
+        text-decoration: none;
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 6px #00000026;
+        border: 0;
+        border-radius: 50px;
+        color: #343a40;
+    }
+
+}
