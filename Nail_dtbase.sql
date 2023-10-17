@@ -84,7 +84,15 @@ CREATE TABLE Appointments (
     Status VARCHAR(50) NOT NULL,
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
-
+INSERT INTO Appointments ( AppointmentTime, ServiceType , Status)
+VALUES 
+('2023-12-31', 'ServiceType', 'Status'),
+('2023-12-31', 'ServiceType', 'Status'),
+('2023-12-31', 'ServiceType', 'Status'),
+('2023-12-31', 'ServiceType', 'Status'),
+('2023-12-31', 'ServiceType', 'Status'),
+('2023-12-31', 'ServiceType', 'Status');
+select * from Appointments;
 CREATE TABLE Feedback (
     FeedbackID INT AUTO_INCREMENT PRIMARY KEY,
     UserID INT,
