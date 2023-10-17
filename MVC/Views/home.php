@@ -40,16 +40,16 @@ include('../Models/database.php');
       <div class="row">
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
-            <div class="col-md-4 "><a href="book_now.php"><button type="button" class="btn btn-book-now rounded-5 lh-lg">BOOK NOW</button></a></div>
-            <div class="col-md-8 pt-1 p-0 lh-lg"><a href="" style="text-decoration: none; color: black"> SERVICE</a></div>
+            <div class="col-md-4 "><a href="book_now.php"><button type="button" class="text-white btn-book-now">BOOK NOW</button></a></div>
+            <div class="col-md-8 pt-1 p-0 lh-lg"><a href="service.php" style="text-decoration: none; color: black"> SERVICE</a></div>
           </div>
         </div>
         <div class="col-md-2 pt-1 fs-2 text-center">
-          <a href="home.php" style="text-decoration: none; color: black"><span>NAIL SPA</span></a>
+          <a href="home.php" style="text-decoration: none; color: black;font-size: 40px"><span>NAIL SPA</span></a>
         </div>
         <div class="col-md-5 d-none d-md-block">
           <div class="row">
-            <div class="col-md-6 text-end lh-lg" ><a href="" style="text-decoration: none; color: black">About Us</a></div>
+            <div class="col-md-6 text-end lh-lg" ><a href="about_us.php" style="text-decoration: none; color: black">About Us</a></div>
             <div class="col-md-2">
               <a href="login.php" style="text-decoration: none; color: black">
                 <p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>
@@ -138,8 +138,8 @@ include('../Models/database.php');
                 <h1>Nail Narrative</h1>
               </div>
 
-              <a href="book_now.php"><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
-              <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
+              <a href="book_now.php"><button type="button" class="btn-light caption">BOOK A SERVICE</button></a>
+              <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn-light caption">SHOP</button></a>
             </div>
           </div>
 
@@ -151,8 +151,8 @@ include('../Models/database.php');
                 <h1>Nail Narrative</h1>
               </div>
 
-              <a href="book_now.php"><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
-              <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
+              <a href="book_now.php"><button type="button" class="btn-light caption">BOOK A SERVICE</button></a>
+              <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn-light caption">SHOP</button></a>
             </div>
           </div>
 
@@ -164,8 +164,8 @@ include('../Models/database.php');
                 <h1>Nail Narrative</h1>
               </div>
 
-              <a href="book_now.php"><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
-              <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
+              <a href="book_now.php"><button type="button" class="btn-light caption">BOOK A SERVICE</button></a>
+              <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn-light caption">SHOP</button></a>
             </div>
           </div>
 
@@ -272,19 +272,22 @@ include('../Models/database.php');
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
-            <img src="../../img/image_aboutus/story_aboutus.jpg" alt="">
+            <img style="height: 800px;width: 100%;
+                        padding: 10px 0;
+                        object-fit: cover"
+                         src="../../img/image_aboutus/story_aboutus.jpg" alt="">
           </div>
           <div class="col-md-6">
-            <div style="padding-top: 50px; padding-left: 70px;">
-              <h1>Empowerment <br>is Beautiful</h1>
-              <p class="py-3">Founded with a vision to radically change <br> an industry by doing what is right, not <br> just what is standard.</p>
-              <a href=""><button type="button" class="btn-book-now rounded-5 fs-3 mt-5">About Us</button></a>
+            <div style="padding-top: 320px; padding-left: 120px;">
+              <h1 style="font-size:50px">Empowerment is Beautiful</h1>
+              <p class="py-3" style="font-size:20px">Founded with a vision to radically change <br> an industry by doing what is right, not <br> just what is standard.</p>
+              <a href="about_us.php"><button type="button" class="btn-book-now rounded-5 fs-3">About Us</button></a>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <hr>
+
     <div class="location py-3">
       <h1 class="text-center py-2">Find Nail Spa Near You</h1>
       <div class="container-fluid">
@@ -338,9 +341,9 @@ include('../Models/database.php');
           <p class="p-0 m-0">Get email updates on all things nails, evens, products and</p>
           <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
           <p>
-          <div class="input-group mb-3">
+          <div class="mb-3" style="display:flex">
             <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button style="margin-left: 10px;" class="btn btn-outline-secondary btn-light rounded-5" type="button" id="button-addon2">Subscribe</button>
+            <button style="margin-left: 10px;" class=" btn-outline-secondary btn-light caption" type="button" id="button-addon2">Subscribe</button>
           </div>
           </p>
         </div>
@@ -351,13 +354,13 @@ include('../Models/database.php');
               <ul style="list-style-type: none;">
                 <li class="my-2" ><a href="shop.php" style="text-decoration: none; color: #fff">SHOP</a></li>
                 <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
-                <li class="my-2"><a href="" style="text-decoration: none; color: #fff">SERVICES</a></li>
+                <li class="my-2"><a href="service.php" style="text-decoration: none; color: #fff">SERVICES</a></li>
                 <li class="my-2"><a href="" style="text-decoration: none; color: #fff">GIFT CARDS</a></li>
               </ul>
             </div>
             <div class="col-md-6">
               <ul style="list-style-type: none;">
-                <li class="my-2"><a href="" style="text-decoration: none; color: #fff">ABOUT US</a></li>
+                <li class="my-2"><a href="about_us.php" style="text-decoration: none; color: #fff">ABOUT US</a></li>
                 <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
                 <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff" >FAQ</a></li>
               </ul>
