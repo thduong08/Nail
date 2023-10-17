@@ -14,6 +14,15 @@ include('../Models/database.php');
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+  <style>
+    .dropdown-item:active{
+      background-color:#dca8a8;
+    }
+    .card-title {
+      text-decoration: none;
+      font-size: 17px;
+    }
+  </style>
 </head>
 
 <body>
@@ -130,7 +139,7 @@ include('../Models/database.php');
               </div>
 
               <a href="book_now.php"><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
-              <a href="shop.php"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
+              <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
             </div>
           </div>
 
@@ -143,7 +152,7 @@ include('../Models/database.php');
               </div>
 
               <a href="book_now.php"><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
-              <a href="shop.php"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
+              <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
             </div>
           </div>
 
@@ -156,7 +165,7 @@ include('../Models/database.php');
               </div>
 
               <a href="book_now.php"><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
-              <a href="shop.php"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
+              <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn btn-light rounded-5">SHOP</button></a>
             </div>
           </div>
 
@@ -172,7 +181,7 @@ include('../Models/database.php');
       </div>
     </div>
     <div class="nail-history">
-      <div class="container-fluid text-center py-3">
+      <div class="container-fluid text-center" style="padding-top:30px; padding-bottom:40px">
         <h1 class="pb-3">More than a Mani</h1>
         <p class="p-0 m-0">For 15 years and counting, we’ve been delivering the highest quality nail care and waxing services and</p>
         <p class="p-0 m-0">products. We’re committed to clean and better-for-you experiences that celebrate your self-expression,</p>
@@ -182,7 +191,7 @@ include('../Models/database.php');
     <div class="nail-product container-fluid">
       <div class="row">
         <div class="col-md-10">
-          <h3 class="text-warning">Best Seller </h3>
+          <h3 class="" style="padding-top:10px;padding-bottom:3px; color: black">Best Seller </h3>
         </div>
         <!-- <div class="col-md-2">
           <a href="" style="text-decoration:underline; color: black">Shop Best Sellers</a>
@@ -195,16 +204,18 @@ include('../Models/database.php');
        $result = $conn->query($sql);
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
+            $productID = $row["ProductID"];
             $productName = $row["ProductName"];
             $price = $row["Price"];
+            $OldPrice = $row["OldPrice"];
             $imageURL = $row["ImageURL"];
-            echo '<div class="col-md-3 mb-4" style="margin: 0 10px;">
+            echo '<div class="col-md-3 mb-4" style="margin: 50px 40px;">
                     <div class="card">
                         <img src="' . $imageURL . '" class="card-img-top img-fluid" alt="' . $productName . '">
                         <div class="card-body">
-                            <h5 class="card-title">' . $productName . '</h5>
+                        <a href="product_detail.php?ProductID=' . $productID. '" class="card-title"><b>' .  $productName . '</b></a>
                             <p class="card-text">$' . $price . '</p>
-                            <div class="col-md-6"><del>Price: 18$</del></div>
+                            <div class="col-md-6"><del>Price: $'.$OldPrice.'</del></div>
                         </div>
                     </div>
                 </div>';
@@ -261,7 +272,7 @@ include('../Models/database.php');
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
-            <img src="../../img/image/story.webp" alt="">
+            <img src="../../img/image_aboutus/story_aboutus.jpg" alt="">
           </div>
           <div class="col-md-6">
             <div style="padding-top: 50px; padding-left: 70px;">
@@ -274,8 +285,8 @@ include('../Models/database.php');
       </div>
     </div>
     <hr>
-    <div class="location py-5">
-      <h1 class="text-center">Location</h1>
+    <div class="location py-3">
+      <h1 class="text-center py-2">Find Nail Spa Near You</h1>
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-5">
