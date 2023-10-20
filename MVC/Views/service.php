@@ -2,7 +2,7 @@
 <div class="mani card mb-3 py-3" style="max-width: 100%;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="../../img/image/nail1.jpg" class="img-fluid rounded-start" alt="...">
+      <img src="../../img/image/nail3.jpg" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -36,7 +36,7 @@
       <td>15p</td>
     </tr>
     <tr>
-      <th scope="row">3</th>
+      <th scope="row">4</th>
       <td>Dip powder mani</td>
       <td>60$</td>
       <td>60p</td>
@@ -45,18 +45,8 @@
   </tbody>
 </table>
       </div>
-    </div>
-  </div>
-</div>
-<!-- 2 -->
-<div class="pedi card mb-3 py-3" style="max-width: 100%;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="../../img/image/nail1.jpg" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">Mani</h5>
+        <h5 class="card-title">Pedi</h5>
         <table class="table">
   <thead>
     <tr>
