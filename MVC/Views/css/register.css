@@ -43,6 +43,7 @@
     .btn-book-now {
         padding: 7px 24px 9px;
         text-decoration: none;
+        border-radius: 50px;
         background-color: #dca8a8;
         box-shadow: 0 2px 6px #00000026;
         border: 0;
