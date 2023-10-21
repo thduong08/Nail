@@ -1,5 +1,13 @@
 <?php
 include('../Models/database.php');
+session_start();
+if (isset($_GET['logout'])) {
+  session_start();
+  session_unset();
+  session_destroy();
+  header("Location: login.php");
+  exit();
+}
 
 $limit = 8;
 
