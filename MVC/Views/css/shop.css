@@ -1,4 +1,32 @@
 
+.card-img-top {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.btn-next-prev {
+  margin-right: 5px;
+  background-color: gray;
+  color: white;
+}
+
+.btn-next-prev:hover {
+  background-color: darkgray;
+}
+
+.dropdown-item:active {
+  background-color: #dca8a8;
+}
+
+
+a{
+    text-decoration: none;
+}
+
 img{
     height: 500px;
 }
@@ -48,16 +76,3 @@ img{
     border-radius: 50px;
     color: #343a40;
 }
-
-.dropdown-item:active {
-    background-color: #dca8a8;
-  }
-
-a{
-    text-decoration: none;
-}
-
-  
-
-  
-

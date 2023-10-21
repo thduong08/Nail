@@ -1,5 +1,13 @@
 <?php
 include('../Models/database.php');
+session_start();
+if (isset($_GET['logout'])) {
+  session_start();
+  session_unset();
+  session_destroy();
+  header("Location: login.php");
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,139 +30,199 @@ include('../Models/database.php');
 </head>
 
 <body>
-  <!--header-->
+ <!--header-->
 <section class="nail-header">
     <div class="nail-miniluxe header_pink">
       <div class="container-fluid text-white text-center" style="height: 30px; line-height:30px;">
         <p>FREE SHIPPING ON ORDERS $50+</p>
       </div>
     </div>
-  </div>
-
-  <section class="nail-header">
-    <div class="container-fluid py-3">
-      <div class="row">
-        <div class="col-md-5 d-none d-md-block">
-          <div class="row">
-            <div class="col-md-4 "><a href="book_now.php"><button type="button" class="text-white btn-book-now">BOOK NOW</button></a></div>
-            <div class="col-md-8 pt-1 p-0 lh-lg"><a href="service.php" style="text-decoration: none; color: black"> SERVICE</a></div>
-          </div>
-        </div>
-        <div class="col-md-2 pt-1 fs-2 text-center">
-          <a href="home.php" style="text-decoration: none; color: black; font-size:40px"><span>NAIL SPA</span></a>
-        </div>
-        <div class="col-md-5 d-none d-md-block">
-          <div class="row">
-            <div class="col-md-6 text-end lh-lg" ><a href="about_us.php" style="text-decoration: none; color: black">About Us</a></div>
-            <div class="col-md-2">
-              <a href="login.php" style="text-decoration: none; color: black">
-                <p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>
-              </a>
-            </div>
-            <div class="col-md-2">
-              <a href="" style="text-decoration: none; color: black">
-                <p class="m-0 p-0 fs-5"><i class="bi bi-search"></i></p>
-              </a>
-            </div>
-            <div class="col-md-2">
-              <a href="" style="text-decoration: none; color: black">
-                <p class="m-0 p-0 fs-5"><i class="bi bi-bag"></i></p>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
-  <section class="nail-mainmenu" style="display: flex; justify-content: center; align-items: center;">
-    <nav class="navbar navbar-expand-lg bg-body">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item px-2">
-            <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Shop</a>
-              <ul class="dropdown-menu">
+
+    <section class="nail-header">
+      <div class="container-fluid py-3">
+        <div class="row">
+          <div class="col-sm d-none d-md-block">
+            <div class="row">
+              <div class="col-md-5 "><a href="book_now.php"><button type="button" class="text-white btn-book-now">BOOK
+                    NOW</button></a></div>
+              <div class="col-md-6 pt-1 p-0 lh-lg"><a href="service.php" style="text-decoration: none; color: black">
+                  SERVICE</a></div>
+            </div>
+          </div>
+          <div class="col-sm pt-1 fs-2 text-center">
+            <a href="home.php" style="text-decoration: none; color: black;font-size: 40px"><span>NAIL SPA</span></a>
+          </div>
+          <div class="col-sm d-none d-md-block">
+            <div class="row">
+              <div class="col-sm" style="display: flex">
                 <?php
-                $sql = "SELECT * FROM Categories";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                    echo '<li class="dropdown-item">';
-                    echo '<a class="nav-link" href="Shop.php?CategoryID=' . $row['CategoryID'] . '">' . $row['CategoryName'] . '</a>';
-                    echo '</li>';
-                  }
+                if (isset($_SESSION['username'])) {
+                  echo '<div class="col-md-6 text-end lh-lg" style="text-decoration: none; color: black;white-space: nowrap;">Welcome, ' . $_SESSION['username'] . '!</div>';
+                  echo '<a href="home.php?logout=1" style="text-decoration: none; color: black; margin-left: 50px">';
+                  echo '<p class="m-0 p-0 fs-5"><i class="bi bi-box-arrow-right"></i></p>';
+                  echo '</a>';
+                } else {
+                  echo '<a href="login.php" style="text-decoration: none; color: black>';
+                  echo '<p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>';
+                  echo '</a>';
                 }
                 ?>
-               </ul>
-              </li>
-            <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
-            </li>
-            <!-- <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="#">Gift Card</a>
-            </li> -->
-            <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="policies.php">Policies</a>
-            </li>
-            <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="our_difference.php">Our difference</a>
-            </li>
-
-            <li class="nav-item dropdown px-2">
-              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                More
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="location.php">Location</a></li>
-                <li><a class="dropdown-item" href="contact_us.php">Contact us</a></li>
-                <li><a class="dropdown-item" href="FAQ.php">FAQ</a></li>
-              </ul>
-            </li>
-          </ul>
+              </div>
+              <div class="col-sm">
+                <a href="" style="text-decoration: none; color: black">
+                  <p class="m-0 p-0 fs-5"><i class="bi bi-search"></i></p>
+                </a>
+              </div>
+              <div class="col-sm">
+                <a href="" style="text-decoration: none; color: black">
+                  <p class="m-0 p-0 fs-5"><i class="bi bi-bag"></i></p>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </nav>
-  </section>
-</div>
+    </section>
+    <section class="nail-mainmenu" style="display: flex; justify-content: center; align-items: center;">
+      <nav class="navbar navbar-expand-lg bg-body">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item px-2">
+                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">Shop</a>
+                <ul class="dropdown-menu">
+                  <?php
+                  $sql = "SELECT * FROM Categories";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                      echo '<li class="dropdown-item">';
+                      echo '<a class="nav-link" href="Shop.php?CategoryID=' . $row['CategoryID'] . '">' . $row['CategoryName'] . '</a>';
+                      echo '</li>';
+                    }
+                  }
+                  ?>
+                </ul>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
+              </li>
+              <li class="nav-item px-2">
+              <a class="nav-link" aria-current="page" href="#">Gift Card</a>
+            </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="policies.php">Policies</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="our_difference.php">Our difference</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="about_us.php">About Us</a>
+              </li>
+
+              <li class="nav-item dropdown px-2">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  More
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="location.php">Location</a></li>
+                  <li><a class="dropdown-item" href="contact_us.php">Contact us</a></li>
+                  <li><a class="dropdown-item" href="FAQ.php">FAQ</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
+    </div>
 
 <!--body-->
-<div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../../img/ảnh_thanh_trượt/anh5.jpeg" class="d-block w-100" alt="Wild Landscape" style="object-fit: cover" />
-      <div class="carousel-caption">
-      <div class="mb-3">
-        <h1 style="font-size:60px">Nail Clean </h1>
-        <h1 style="font-size:60px">Nail Care</h1>
+<div class="mani card mb-3 py-3" style="max-width: 100%;">
+  <div class="row g-0">
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Mani</h5>
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr>
+      <th scope="row">1</th>
+      <td>Get mani</td>
+      <td>55$</td>
+      <td>45p</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Mani</td>
+      <td>25$</td>
+      <td>30p</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Mani polish change</td>
+      <td>15$</td>
+      <td>15p</td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>Dip powder mani</td>
+      <td>60$</td>
+      <td>60p</td>
+    </tr>
+
+  </tbody>
+</table>
       </div>
-      <div>
-          <p style="font-size:20px">Book a self-care with manicures, pedicures</p>
-      </div>
-          <a href="book_now.php"><button type="button" class="btn btn-light rounded-5">BOOK A SERVICE</button></a>
-        </div>
+      <div class="card-body">
+        <h5 class="card-title">Pedi</h5>
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr>
+      <th scope="row">1</th>
+      <td>Get pedi</td>
+      <td>72$</td>
+      <td>45p</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Pedi</td>
+      <td>52$</td>
+      <td>30p</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Pedi polish change</td>
+      <td>20$</td>
+      <td>15p</td>
+    </tr>
+  </tbody>
+</table>
       </div>
     </div>
   </div>
-</div>
-<hr>
-<div>
-  <ul class="shogun-tabs shogun-rounded" role="tablist">
-    <li class="shogun-tab shogun-tab-active" role="tab">
-      <div class="shogun-tab-box">
-        <span class="shogun-tab-title">MANICURES </span>
-      </div>
-      <div class="shogun-tab-border"></div>
-    </li>
-    <li class="shogun-tab" role="tab">
-    <div class="shogun-tab-box">
-        <span class="shogun-tab-title"> PEDICURES </span>
-      </div>
-    </li>
-  </ul>
 </div>
 
 <!--footer-->

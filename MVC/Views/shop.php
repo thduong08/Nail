@@ -1,5 +1,13 @@
 <?php
 include('../Models/database.php');
+session_start();
+if (isset($_GET['logout'])) {
+  session_start();
+  session_unset();
+  session_destroy();
+  header("Location: login.php");
+  exit();
+}
 
 $limit = 8;
 
@@ -32,44 +40,15 @@ $resultProducts = $conn->query($sqlProducts);
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/shop.css">
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-  <style>
-    .card-img-top {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .container {
-      margin-top: 50px;
-    }
-
-    .btn-next-prev {
-      margin-right: 5px;
-      background-color: gray;
-      color: white;
-    }
-
-    .btn-next-prev:hover {
-      background-color: darkgray;
-    }
-
-    .dropdown-item:active {
-      background-color: #dca8a8;
-    }
-
-    .card-title {
-      text-decoration: none;
-      font-size: 17px;
-    }
-  </style>
 </head>
 
 <body>
-  <!-- header -->
-  <section class="nail-header">
+  <!--header-->
+<section class="nail-header">
     <div class="nail-miniluxe header_pink">
       <div class="container-fluid text-white text-center" style="height: 30px; line-height:30px;">
         <p>FREE SHIPPING ON ORDERS $50+</p>
@@ -80,32 +59,39 @@ $resultProducts = $conn->query($sqlProducts);
     <section class="nail-header">
       <div class="container-fluid py-3">
         <div class="row">
-          <div class="col-md-5 d-none d-md-block">
+          <div class="col-sm d-none d-md-block">
             <div class="row">
-              <div class="col-md-4 "><a href="book_now.php"><button type="button"
-              class="text-white btn-book-now">BOOK NOW</button></a></div>
-              <div class="col-md-8 pt-1 p-0 lh-lg"><a href="service.php" style="text-decoration: none; color: black"> SERVICE</a>
-              </div>
+              <div class="col-md-5 "><a href="book_now.php"><button type="button" class="text-white btn-book-now">BOOK
+                    NOW</button></a></div>
+              <div class="col-md-6 pt-1 p-0 lh-lg"><a href="service.php" style="text-decoration: none; color: black">
+                  SERVICE</a></div>
             </div>
           </div>
-          <div class="col-md-2 pt-1 fs-2 text-center">
-            <a href="home.php" style="text-decoration: none; color: black; font-size:40px"><span>NAIL SPA</span></a>
+          <div class="col-sm pt-1 fs-2 text-center">
+            <a href="home.php" style="text-decoration: none; color: black;font-size: 40px"><span>NAIL SPA</span></a>
           </div>
-          <div class="col-md-5 d-none d-md-block">
+          <div class="col-sm d-none d-md-block">
             <div class="row">
-              <div class="col-md-6 text-end lh-lg"><a href="about_us.php" style="text-decoration: none; color: black">About Us</a>
+              <div class="col-sm" style="display: flex">
+                <?php
+                if (isset($_SESSION['username'])) {
+                  echo '<div class="col-md-6 text-end lh-lg" style="text-decoration: none; color: black;white-space: nowrap;">Welcome, ' . $_SESSION['username'] . '!</div>';
+                  echo '<a href="home.php?logout=1" style="text-decoration: none; color: black; margin-left: 50px">';
+                  echo '<p class="m-0 p-0 fs-5"><i class="bi bi-box-arrow-right"></i></p>';
+                  echo '</a>';
+                } else {
+                  echo '<a href="login.php" style="text-decoration: none; color: black>';
+                  echo '<p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>';
+                  echo '</a>';
+                }
+                ?>
               </div>
-              <div class="col-md-2">
-                <a href="login.php" style="text-decoration: none; color: black">
-                  <p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>
-                </a>
-              </div>
-              <div class="col-md-2">
+              <div class="col-sm">
                 <a href="" style="text-decoration: none; color: black">
                   <p class="m-0 p-0 fs-5"><i class="bi bi-search"></i></p>
                 </a>
               </div>
-              <div class="col-md-2">
+              <div class="col-sm">
                 <a href="" style="text-decoration: none; color: black">
                   <p class="m-0 p-0 fs-5"><i class="bi bi-bag"></i></p>
                 </a>
@@ -135,7 +121,7 @@ $resultProducts = $conn->query($sqlProducts);
                   if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                       echo '<li class="dropdown-item">';
-                      echo '<a class="nav-link"   href="Shop.php?CategoryID=' . $row['CategoryID'] . '">' . $row['CategoryName'] . '</a>';
+                      echo '<a class="nav-link" href="Shop.php?CategoryID=' . $row['CategoryID'] . '">' . $row['CategoryName'] . '</a>';
                       echo '</li>';
                     }
                   }
@@ -145,19 +131,21 @@ $resultProducts = $conn->query($sqlProducts);
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
               </li>
-              <!-- <li class="nav-item px-2">
-                <a class="nav-link" aria-current="page" href="#">Gift Card</a>
-              </li> -->
+              <li class="nav-item px-2">
+              <a class="nav-link" aria-current="page" href="#">Gift Card</a>
+            </li>
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="policies.php">Policies</a>
               </li>
               <li class="nav-item px-2">
-                <a class="nav-link" aria-current="page" href="our_difference">Our difference</a>
+                <a class="nav-link" aria-current="page" href="our_difference.php">Our difference</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="about_us.php">About Us</a>
               </li>
 
               <li class="nav-item dropdown px-2">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   More
                 </a>
                 <ul class="dropdown-menu">
@@ -189,15 +177,17 @@ $resultProducts = $conn->query($sqlProducts);
               $price = $rowProduct["Price"];
               $imageURL = $rowProduct["ImageURL"];
               echo '<div class="col-md-3 mb-4">
-                    <div  class="card">
-                    
-                        <img src="' . $imageURL . '" class="card-img-top" alt="' . $productName . '">
-                        <div class="card-body">
-                        <a href="product_detail.php?ProductID=' . $productId . '" class="card-title"><b>' . $productName . '</b></a>
-                            <p class="card-text">$' . $price . '</p>
-                        </div>
-                    </div>
-                </div>';
+              <a href="product_detail.php?ProductID=' . $productId . '" class="card-link">
+                  <div  class="card">
+                      <img src="' . $imageURL . '" class="card-img-top" alt="' . $productName . '">
+                      <div class="card-body">
+                          <h5><b>' . $productName . '</b></h5>
+                          <p class="card-text">$' . $price . '</p>
+                      </div>
+                  </div>
+              </a>
+          </div>';
+
             }
           } else {
             echo "No products found.";
