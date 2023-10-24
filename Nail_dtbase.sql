@@ -10,15 +10,27 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL,
     password VARCHAR(100) NOT NULL
 );
-
-drop table users;
 select*from users;
 
-CREATE TABLE Admin (
-    AdminID INT AUTO_INCREMENT PRIMARY KEY,
-    Username VARCHAR(255) NOT NULL,
-    Password VARCHAR(255) NOT NULL
+CREATE TABLE Feedback (
+    FeedbackID INT AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL
 );
+ALTER TABLE Feedback
+ADD created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+INSERT INTO Feedback (username, content) VALUES
+('Hoang Anh', 'I am all about trying out very intrinsic designs on my nails and it is really hard to find a place that can match exactly what I show them but that was not even close to an issue at NAILSPA'),
+('Thuy Duong', 'Best manicure I have had yet. The employees were so nice, and everything was so easy! My gel manicure has lasted me longer than any other salon I have ever been to. Highly recommend!'),
+('Van Thi', 'Beautiful and clean space. Super fun vibe... the staff was very courteous, and my technician checked to make sure I was happy with the color I chose before proceeding'),
+('Ngoc Khanh', 'The services are so quick, but still come out incredible. I always leave NAILSPA in the best mood.'),
+('Tien Quan', 'The vibes are exactly what you want when getting a manicure. The staff is super friendly and knowledgeable. Can not wait to go back!'),
+('Ronaldo', 'I love how the nail designs turned out and the team was so helpful in finding the colors I was looking for.'),
+('Messi', 'Love that they have a monthly membership so you can get your mani and pedi as often as you want. NAILSPA is also very clean and cute. Def try it out!'),
+('Neymar', 'The attention to detail and professionalism is unmatched!!!'),
+('Haaland', 'I got a gel pedicure done here, and it was very well done and lasted for an eternity');
+select*from Feedback;
 
 CREATE TABLE Categories (
     CategoryID INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,6 +48,7 @@ CREATE TABLE Products (
     Description TEXT,
     Price DECIMAL(10, 2) NOT NULL,
 	OldPrice DECIMAL(10, 2) NOT NULL,
+    Quantity INT,
     ImageURL VARCHAR(255),
     CategoryID INT,
     FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
@@ -77,90 +90,33 @@ VALUES
 
 select*from Products;
 
-
 CREATE TABLE Appointments (
     AppointmentID INT AUTO_INCREMENT PRIMARY KEY,
     UserID INT,
+    EmployeeID INT,
     AppointmentTime DATETIME NOT NULL,
     ServiceType VARCHAR(100) NOT NULL,
     Status VARCHAR(50) NOT NULL,
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
-);
-INSERT INTO Appointments ( AppointmentTime, ServiceType , Status)
-VALUES 
-('2023-12-31', 'ULTIMATE', 'Status'),
-('2023-12-31', 'DELUXE', 'Status'),
-('2023-12-31', 'CLASSIC', 'Status'),
-('2023-12-31', 'NO POLISH', 'Status'),
-('2023-12-31', 'TEENYLUXE', 'Status'),
-('2023-12-31', 'GEL POLISH', 'Status');
-select * from Appointments;
-
-CREATE TABLE Feedback (
-    FeedbackID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT,
-    Content TEXT NOT NULL,
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
-);
-
-CREATE TABLE GiftCards (
-    GiftCardID INT AUTO_INCREMENT PRIMARY KEY,
-    Code VARCHAR(50) NOT NULL,
-    Value DECIMAL(10, 2) NOT NULL,
-    ExpiryDate DATE NOT NULL
-);
-
-INSERT INTO GiftCards (Code, Value, ExpiryDate)
-VALUES 
-('GIFT1123123', 1.0, '2023-12-31'),
-('GIFT2413541', 2.0, '2023-12-31'),
-('GIFT3545135', 3.0, '2023-12-31'),
-('GIFT3515114', 4.0, '2023-12-31');
-
-
-CREATE TABLE Carts (
-    CartID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT,
-    ProductID INT,
-    Quantity INT,
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
 );
 
-CREATE TABLE Posts (
-    PostID INT AUTO_INCREMENT PRIMARY KEY,
-    Title VARCHAR(255) NOT NULL,
-    Content TEXT,
-    CreatedAt DATETIME NOT NULL,
-    CategoryID INT,
-    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+select*from appointments;
+CREATE TABLE Employees(
+	EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Phone VARCHAR(10) NOT NULL,
+    Role VARCHAR(50) NOT NULL
 );
 
-INSERT INTO Posts (Title, Content, CreatedAt) VALUES 
-('Empowerment is Beautiful', 'Founded with a vision to radically change an industry by doing what is right, not just what is standard.', '2023-10-05 14:30:00'),
-('Find a Studio', 'Leading the industry with clean and healthy nails (and waxing!).', '2023-10-05 14:30:00'),
-('Trends in Nail Art', 'Nail art is constantly evolving, with new trends emerging regularly. From intricate designs to vibrant colors, the nail art scene has something for everyone. In this post, we will explore the latest trends in nail art and how you can stay fashionable with your nail designs.', '2023-10-05 15:00:00');
+INSERT INTO Employees (FirstName, LastName, Email, Phone, Role) VALUES
+('Kirit', 'Elena', 'kirit@example.com', '1234567890', 'Nail Technician'),
+('Sindy', 'Mark', 'sindy@example.com', '1234567891', 'Nail Technician'),
+('Jessi', 'Lena', 'jessi@example.com', '1234567892', 'Nail Technician'),
+('Bell', 'Mary', 'bell@example.com', '1234567893', 'Nail Technician'),
+('Korinn', 'Asa', 'korinn@example.com', '1234567894', 'Nail Technician'),
+('Jangsii', '', 'jangsii@example.com', '1234567895', 'Nail Technician');
 
 
-CREATE TABLE Orders (
-    OrderID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT,
-    OrderDate DATETIME NOT NULL,
-    TotalAmount DECIMAL(10, 2) NOT NULL,
-    Address varchar(100),
-    Status VARCHAR(50) NOT NULL,
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
-);
-
-CREATE TABLE OrderDetail (
-    OrderDetailID INT AUTO_INCREMENT PRIMARY KEY,
-    OrderID INT,
-    ProductID INT,
-    Quantity INT NOT NULL,
-    Price DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
-);
-
-
-drop database Nail_dtbase
