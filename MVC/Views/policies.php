@@ -1,6 +1,7 @@
 <?php
 include('../Models/database.php');
 session_start();
+$_SESSION['return_to'] = $_SERVER['REQUEST_URI']; // Store the current URL
 if (isset($_GET['logout'])) {
   session_start();
   session_unset();
@@ -22,15 +23,10 @@ if (isset($_GET['logout'])) {
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-  <style>
-    .dropdown-item:active{
-      background-color:#dca8a8;
-    }
-  </style>
 </head>
 
 <body>
-    <!--header-->
+  <!--header-->
   <section class="nail-header">
     <div class="nail-miniluxe header_pink">
       <div class="container-fluid text-white text-center" style="height: 30px; line-height:30px;">
@@ -55,6 +51,8 @@ if (isset($_GET['logout'])) {
           </div>
           <div class="col-sm d-none d-md-block">
             <div class="row">
+              <div class="col-sm">
+              </div>
               <div class="col-sm" style="display: flex">
                 <?php
                 if (isset($_SESSION['username'])) {
@@ -63,8 +61,8 @@ if (isset($_GET['logout'])) {
                   echo '<p class="m-0 p-0 fs-5"><i class="bi bi-box-arrow-right"></i></p>';
                   echo '</a>';
                 } else {
-                  echo '<a href="login.php" style="text-decoration: none; color: black>';
-                  echo '<p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>';
+                  echo '<a href="login.php" style="text-decoration: none; color: black;>';
+                  echo '<p class="m-0 p-0 "><i class="bi bi-person-circle fs-5" style="text-decoration: none; color: black"></i></p>';
                   echo '</a>';
                 }
                 ?>
@@ -75,8 +73,9 @@ if (isset($_GET['logout'])) {
                 </a>
               </div>
               <div class="col-sm">
-                <a href="" style="text-decoration: none; color: black">
+                <a href="view_cart.php" style="text-decoration: none; color: black">
                   <p class="m-0 p-0 fs-5"><i class="bi bi-bag"></i></p>
+                  (<?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>)
                 </a>
               </div>
             </div>
@@ -87,16 +86,13 @@ if (isset($_GET['logout'])) {
     <section class="nail-mainmenu" style="display: flex; justify-content: center; align-items: center;">
       <nav class="navbar navbar-expand-lg bg-body">
         <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item px-2">
-                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Shop</a>
+                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
                   <?php
                   $sql = "SELECT * FROM Categories";
@@ -114,9 +110,6 @@ if (isset($_GET['logout'])) {
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
               </li>
-              <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="#">Gift Card</a>
-            </li>
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="policies.php">Policies</a>
               </li>
@@ -143,87 +136,91 @@ if (isset($_GET['logout'])) {
       </nav>
     </section>
     </div>
-<hr>
-<!--body-->
-<body>
-    <div class="body">
+    <hr>
+    <!--body-->
+
+    <body>
+      <div class="body">
         <div class="box" style="padding-bottom:30px">
-            <div class="h3 text-center"><h3>POLICIES</h3><br></div>
-            <div>
-                <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-8"> <h4 class="p-1">Cancellations</h4>
-            <p>Nail Spa requests a 24-hour notice of any appointment cancellation or rescheduling. </p>
-            <ul>
-                <li>For appointments canceled within 24 hours of the appointment time, we <br>
+          <div class="h3 text-center">
+            <h3>POLICIES</h3><br>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-8">
+                <h4 class="p-1">Cancellations</h4>
+                <p>Nail Spa requests a 24-hour notice of any appointment cancellation or rescheduling. </p>
+                <ul>
+                  <li>For appointments canceled within 24 hours of the appointment time, we <br>
                     reserve the right to charge 100% of the service total.</li>
-                <li>In the event of a no-show, we reserve the right to charge 100% of the service total.</li>
-            </ul>
-            <h4>Cancellations</h4>
-            <p>The client will be charged the difference for downgrading services without 24-hour</p>
-            <p> notice. This includes circumstances where client lateness is the cause of the downgrade.  </p>
-            <h4>Cancellations</h4>
-            <p>ld damage to your manicure occur, the salon must be contacted within 7 days <br>
-                 of your initial service to receive a complimentary nail fix. This excludes any nail <br>
+                  <li>In the event of a no-show, we reserve the right to charge 100% of the service total.</li>
+                </ul>
+                <h4>Cancellations</h4>
+                <p>The client will be charged the difference for downgrading services without 24-hour</p>
+                <p> notice. This includes circumstances where client lateness is the cause of the downgrade. </p>
+                <h4>Cancellations</h4>
+                <p>ld damage to your manicure occur, the salon must be contacted within 7 days <br>
+                  of your initial service to receive a complimentary nail fix. This excludes any nail <br>
                   breaks that require an extension, in which the client is responsible for payment in <br>
-                   full. Any damage reported after 7 days will be repaired at cost. </p></div>
+                  full. Any damage reported after 7 days will be repaired at cost. </p>
+              </div>
 
             </div>
-        </div>
-    </div>
-</body>
- 
-
-<!--footer-->
-<footer class="footer" style="color: #fff">
-  <section class="nail-footer">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-5 my-3">
-          <h3 class="p-0 m-0"><span class="fs-1">NAIL SPA</h3>
-          <p class="p-0 m-0">Get email updates on all things nails, evens, products and</p>
-          <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
-          <p>
-          <div class="" style="display: flex">
-            <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button style="margin-left: 10px;" class="btn-outline-secondary btn-light caption" type="button" id="button-addon2">Subscribe</button>
           </div>
-          </p>
         </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-5 my-4" >
+    </body>
+
+
+       <!--footer-->
+       <footer class="footer" style="color: #fff">
+      <section class="nail-footer">
+        <div class="container-fluid">
           <div class="row">
-            <div class="col-md-6">
-              <ul style="list-style-type: none;">
-                <li class="my-2" ><a href="shop.php" style="text-decoration: none; color: #fff">SHOP</a></li>
-                <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
-                <li class="my-2"><a href="service.php" style="text-decoration: none; color: #fff">SERVICES</a></li>
-                <li class="my-2"><a href="" style="text-decoration: none; color: #fff">GIFT CARDS</a></li>
-              </ul>
+            <div class="col-md-5 my-3">
+              <h3 class="p-0 m-0"><span class="fs-1">NAIL SPA</h3>
+              <p class="p-0 m-0">Get email updates on all things nails, evens, products and</p>
+              <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
+              <p>
+              <div class="mb-3" style="display:flex">
+                <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button style="margin-left: 10px;" class=" btn-outline-secondary btn-light caption" type="button" id="button-addon2">Subscribe</button>
+              </div>
+              </p>
             </div>
-            <div class="col-md-6">
-              <ul style="list-style-type: none;">
-                <li class="my-2"><a href="about_us.php" style="text-decoration: none; color: #fff">ABOUT US</a></li>
-                <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
-                <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff" >FAQ</a></li>
-              </ul>
+            <div class="col-md-2"></div>
+            <div class="col-md-5 my-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <ul style="list-style-type: none;">
+                    <li class="my-2"><a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=1location.php" style="text-decoration: none; color: #fff">SHOP</a></li>
+                    <li class="my-2"><a href="service.php" style="text-decoration: none; color: #fff">SERVICES</a></li>
+                    <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul style="list-style-type: none;">
+                    <li class="my-2"><a href="about_us.php" style="text-decoration: none; color: #fff">ABOUT US</a></li>
+                    <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
+                    <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff">FAQ</a></li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    </div>
-  </section>
-  </footer>
+        </div>
+      </section>
+    </footer>
 
 
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <!-- <script type="text/javascript" src="./js/home.js"></script> -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- <script type="text/javascript" src="./js/home.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

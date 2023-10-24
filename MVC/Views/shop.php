@@ -1,6 +1,7 @@
 <?php
 include('../Models/database.php');
 session_start();
+$_SESSION['return_to'] = $_SERVER['REQUEST_URI']; // Store the current URL
 if (isset($_GET['logout'])) {
   session_start();
   session_unset();
@@ -48,7 +49,7 @@ $resultProducts = $conn->query($sqlProducts);
 
 <body>
   <!--header-->
-<section class="nail-header">
+  <section class="nail-header">
     <div class="nail-miniluxe header_pink">
       <div class="container-fluid text-white text-center" style="height: 30px; line-height:30px;">
         <p>FREE SHIPPING ON ORDERS $50+</p>
@@ -72,6 +73,8 @@ $resultProducts = $conn->query($sqlProducts);
           </div>
           <div class="col-sm d-none d-md-block">
             <div class="row">
+              <div class="col-sm">
+              </div>
               <div class="col-sm" style="display: flex">
                 <?php
                 if (isset($_SESSION['username'])) {
@@ -80,8 +83,8 @@ $resultProducts = $conn->query($sqlProducts);
                   echo '<p class="m-0 p-0 fs-5"><i class="bi bi-box-arrow-right"></i></p>';
                   echo '</a>';
                 } else {
-                  echo '<a href="login.php" style="text-decoration: none; color: black>';
-                  echo '<p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>';
+                  echo '<a href="login.php" style="text-decoration: none; color: black;>';
+                  echo '<p class="m-0 p-0 "><i class="bi bi-person-circle fs-5" style="text-decoration: none; color: black"></i></p>';
                   echo '</a>';
                 }
                 ?>
@@ -92,8 +95,9 @@ $resultProducts = $conn->query($sqlProducts);
                 </a>
               </div>
               <div class="col-sm">
-                <a href="" style="text-decoration: none; color: black">
+                <a href="view_cart.php" style="text-decoration: none; color: black">
                   <p class="m-0 p-0 fs-5"><i class="bi bi-bag"></i></p>
+                  (<?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>)
                 </a>
               </div>
             </div>
@@ -104,16 +108,13 @@ $resultProducts = $conn->query($sqlProducts);
     <section class="nail-mainmenu" style="display: flex; justify-content: center; align-items: center;">
       <nav class="navbar navbar-expand-lg bg-body">
         <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item px-2">
-                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Shop</a>
+                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
                   <?php
                   $sql = "SELECT * FROM Categories";
@@ -131,9 +132,6 @@ $resultProducts = $conn->query($sqlProducts);
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
               </li>
-              <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="#">Gift Card</a>
-            </li>
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="policies.php">Policies</a>
               </li>
@@ -187,7 +185,6 @@ $resultProducts = $conn->query($sqlProducts);
                   </div>
               </a>
           </div>';
-
             }
           } else {
             echo "No products found.";
@@ -213,7 +210,7 @@ $resultProducts = $conn->query($sqlProducts);
       $conn->close();
       ?>
     </div>
-    <!-- footer -->
+    <!--footer-->
     <footer class="footer" style="color: #fff">
       <section class="nail-footer">
         <div class="container-fluid">
@@ -224,10 +221,8 @@ $resultProducts = $conn->query($sqlProducts);
               <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
               <p>
               <div class="mb-3" style="display:flex">
-                <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username"
-                  aria-describedby="button-addon2">
-                <button style="margin-left: 10px;" class=" btn-outline-secondary btn-light caption" type="button"
-                  id="button-addon2">Subscribe</button>
+                <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button style="margin-left: 10px;" class=" btn-outline-secondary btn-light caption" type="button" id="button-addon2">Subscribe</button>
               </div>
               </p>
             </div>
@@ -236,18 +231,15 @@ $resultProducts = $conn->query($sqlProducts);
               <div class="row">
                 <div class="col-md-6">
                   <ul style="list-style-type: none;">
-                    <li class="my-2"><a href="shop.php" style="text-decoration: none; color: #fff">SHOP</a></li>
-                    <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a>
-                    </li>
+                    <li class="my-2"><a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=1location.php" style="text-decoration: none; color: #fff">SHOP</a></li>
                     <li class="my-2"><a href="service.php" style="text-decoration: none; color: #fff">SERVICES</a></li>
-                    <!-- <li class="my-2"><a href="" style="text-decoration: none; color: #fff">GIFT CARDS</a></li> -->
+                    <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
                   </ul>
                 </div>
                 <div class="col-md-6">
                   <ul style="list-style-type: none;">
                     <li class="my-2"><a href="about_us.php" style="text-decoration: none; color: #fff">ABOUT US</a></li>
-                    <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a>
-                    </li>
+                    <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
                     <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff">FAQ</a></li>
                   </ul>
                 </div>

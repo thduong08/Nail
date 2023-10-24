@@ -54,3 +54,7 @@
   border-radius: 50px;
   color: #343a40;
 }
+
+.dropdown-item:active{
+  background-color:#dca8a8;
+}

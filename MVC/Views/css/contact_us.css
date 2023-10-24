@@ -23,6 +23,10 @@
     font-family: Vanitas-Extrabold;
 }
 
+.dropdown-item:active{
+    background-color:#dca8a8;
+}
+
 
 @media (min-width: 300px) {
     .btn-book-now {
@@ -33,6 +37,17 @@
         box-shadow: 0 2px 6px #00000026;
         border: 0;
         color: #fff;
+    }
+
+    .btn-book-now2 {
+        padding: 7px 24px 9px;
+        border-radius: 50px;
+        text-decoration: none;
+        background-color: #dca8a8;
+        box-shadow: 0 2px 6px #00000026;
+        border: 0;
+        color: #fff;
+        margin-left: 200px;
     }
 
     .h2 {
@@ -90,6 +105,10 @@
         border: 0;
         border-radius: 50px;
         color: #343a40;
+    }
+
+    .dropdown-item:active {
+        background-color: #dca8a8;
     }
 
 }

@@ -1,6 +1,7 @@
 <?php
 include('../Models/database.php');
 session_start();
+$_SESSION['return_to'] = $_SERVER['REQUEST_URI']; // Store the current URL
 if (isset($_GET['logout'])) {
   session_start();
   session_unset();
@@ -23,16 +24,12 @@ if (isset($_GET['logout'])) {
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-  <style>
-    .dropdown-item:active{
-      background-color:#dca8a8;
-    }
-  </style>
+
 </head>
 
 <body>
-<!--header-->
-<section class="nail-header">
+  <!--header-->
+  <section class="nail-header">
     <div class="nail-miniluxe header_pink">
       <div class="container-fluid text-white text-center" style="height: 30px; line-height:30px;">
         <p>FREE SHIPPING ON ORDERS $50+</p>
@@ -56,6 +53,8 @@ if (isset($_GET['logout'])) {
           </div>
           <div class="col-sm d-none d-md-block">
             <div class="row">
+              <div class="col-sm">
+              </div>
               <div class="col-sm" style="display: flex">
                 <?php
                 if (isset($_SESSION['username'])) {
@@ -64,8 +63,8 @@ if (isset($_GET['logout'])) {
                   echo '<p class="m-0 p-0 fs-5"><i class="bi bi-box-arrow-right"></i></p>';
                   echo '</a>';
                 } else {
-                  echo '<a href="login.php" style="text-decoration: none; color: black>';
-                  echo '<p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>';
+                  echo '<a href="login.php" style="text-decoration: none; color: black;>';
+                  echo '<p class="m-0 p-0 "><i class="bi bi-person-circle fs-5" style="text-decoration: none; color: black"></i></p>';
                   echo '</a>';
                 }
                 ?>
@@ -76,8 +75,9 @@ if (isset($_GET['logout'])) {
                 </a>
               </div>
               <div class="col-sm">
-                <a href="" style="text-decoration: none; color: black">
+                <a href="view_cart.php" style="text-decoration: none; color: black">
                   <p class="m-0 p-0 fs-5"><i class="bi bi-bag"></i></p>
+                  (<?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>)
                 </a>
               </div>
             </div>
@@ -88,16 +88,13 @@ if (isset($_GET['logout'])) {
     <section class="nail-mainmenu" style="display: flex; justify-content: center; align-items: center;">
       <nav class="navbar navbar-expand-lg bg-body">
         <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item px-2">
-                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Shop</a>
+                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
                   <?php
                   $sql = "SELECT * FROM Categories";
@@ -115,9 +112,6 @@ if (isset($_GET['logout'])) {
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
               </li>
-              <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="#">Gift Card</a>
-            </li>
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="policies.php">Policies</a>
               </li>
@@ -144,82 +138,80 @@ if (isset($_GET['logout'])) {
       </nav>
     </section>
     </div>
-<hr> 
+    <hr>
 
-<!-- body -->
-<div class="content-for-layout focus-one">
-    <section style="background-color: #ffffff;">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="login-contrainer">
+    <!-- body -->
+    <div class="content-for-layout focus-one">
+      <section style="background-color: #ffffff;">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="login-contrainer">
             <div class="customer-login">
-            <form action="" method="POST" style="padding: 100px">
-                    <h2>Reset your password</h2> <br>
-                    <h6>We will send you an email to reset your password</h6>
-                    <div class="form-outline mb-4">
-                      <input type="text" id="email" class="form-control" name="email" placeholder="Email" required/>
-                    </div>
-                    <div class="text-center pt-1 mb-5 pb-1">
-                      <input class="btn-book-now text-white mb-3" type="submit" name="reset"
-                        value="Reset" href="checkinbox.php" /> <br>
-                        <a class="text-muted text-black" href="login.php">Cancel</a>
-                    </div>
+              <form action="" method="POST" style="padding: 100px">
+                <h2>Reset your password</h2> <br>
+                <h6>We will send you an email to reset your password</h6>
+                <div class="form-outline mb-4">
+                  <input type="text" id="email" class="form-control" name="email" placeholder="Email" required />
+                </div>
+                <div class="text-center pt-1 mb-5 pb-1">
+                  <input class="btn-book-now text-white mb-3" type="submit" name="reset" value="Reset" href="checkinbox.php" /> <br>
+                  <a class="text-muted text-black" href="login.php">Cancel</a>
+                </div>
 
-                
+
             </div>
-        </div>
-    </section>
-</div>
-
-<!--footer-->
-<footer class="footer" style="color: #fff">
-  <section class="nail-footer">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-5 my-3">
-          <h3 class="p-0 m-0"><span class="fs-1">NAIL SPA</h3>
-          <p class="p-0 m-0">Get email updates on all things nails, evens, products and</p>
-          <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
-          <p>
-          <div class="mb-3" style="display:flex">
-            <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button style="margin-left: 10px;" class="btn-outline-secondary btn-light" type="button" id="button-addon2">Subscribe</button>
           </div>
-          </p>
-        </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-5 my-4" >
+      </section>
+    </div>
+
+    <!--footer-->
+    <footer class="footer" style="color: #fff">
+      <section class="nail-footer">
+        <div class="container-fluid">
           <div class="row">
-            <div class="col-md-6">
-              <ul style="list-style-type: none;">
-                <li class="my-2" ><a href="shop.php" style="text-decoration: none; color: #fff">SHOP</a></li>
-                <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
-                <li class="my-2"><a href="service.php" style="text-decoration: none; color: #fff">SERVICES</a></li>
-                <li class="my-2"><a href="" style="text-decoration: none; color: #fff">GIFT CARDS</a></li>
-              </ul>
+            <div class="col-md-5 my-3">
+              <h3 class="p-0 m-0"><span class="fs-1">NAIL SPA</h3>
+              <p class="p-0 m-0">Get email updates on all things nails, evens, products and</p>
+              <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
+              <p>
+              <div class="mb-3" style="display:flex">
+                <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button style="margin-left: 10px;" class=" btn-outline-secondary btn-light caption" type="button" id="button-addon2">Subscribe</button>
+              </div>
+              </p>
             </div>
-            <div class="col-md-6">
-              <ul style="list-style-type: none;">
-                <li class="my-2"><a href="about_us.php" style="text-decoration: none; color: #fff">ABOUT US</a></li>
-                <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
-                <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff" >FAQ</a></li>
-              </ul>
+            <div class="col-md-2"></div>
+            <div class="col-md-5 my-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <ul style="list-style-type: none;">
+                    <li class="my-2"><a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=1location.php" style="text-decoration: none; color: #fff">SHOP</a></li>
+                    <li class="my-2"><a href="service.php" style="text-decoration: none; color: #fff">SERVICES</a></li>
+                    <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul style="list-style-type: none;">
+                    <li class="my-2"><a href="about_us.php" style="text-decoration: none; color: #fff">ABOUT US</a></li>
+                    <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
+                    <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff">FAQ</a></li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    </div>
-  </section>
-  </footer>
+        </div>
+      </section>
+    </footer>
 
 
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <!-- <script type="text/javascript" src="./js/home.js"></script> -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- <script type="text/javascript" src="./js/home.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

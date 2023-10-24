@@ -22,16 +22,7 @@ if (isset($_GET['logout'])) {
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-  <style>
-    .dropdown-item:active {
-      background-color: #dca8a8;
-    }
 
-    .card-title {
-      text-decoration: none;
-      font-size: 17px;
-    }
-  </style>
 </head>
 
 <body>
@@ -60,6 +51,8 @@ if (isset($_GET['logout'])) {
           </div>
           <div class="col-sm d-none d-md-block">
             <div class="row">
+              <div class="col-sm">
+              </div>
               <div class="col-sm" style="display: flex">
                 <?php
                 if (isset($_SESSION['username'])) {
@@ -68,8 +61,8 @@ if (isset($_GET['logout'])) {
                   echo '<p class="m-0 p-0 fs-5"><i class="bi bi-box-arrow-right"></i></p>';
                   echo '</a>';
                 } else {
-                  echo '<a href="login.php" style="text-decoration: none; color: black>';
-                  echo '<p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>';
+                  echo '<a href="login.php" style="text-decoration: none; color: black;>';
+                  echo '<p class="m-0 p-0 "><i class="bi bi-person-circle fs-5" style="text-decoration: none; color: black"></i></p>';
                   echo '</a>';
                 }
                 ?>
@@ -80,8 +73,9 @@ if (isset($_GET['logout'])) {
                 </a>
               </div>
               <div class="col-sm">
-                <a href="" style="text-decoration: none; color: black">
+                <a href="view_cart.php" style="text-decoration: none; color: black">
                   <p class="m-0 p-0 fs-5"><i class="bi bi-bag"></i></p>
+                  (<?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>)
                 </a>
               </div>
             </div>
@@ -92,16 +86,13 @@ if (isset($_GET['logout'])) {
     <section class="nail-mainmenu" style="display: flex; justify-content: center; align-items: center;">
       <nav class="navbar navbar-expand-lg bg-body">
         <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item px-2">
-                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Shop</a>
+                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
                   <?php
                   $sql = "SELECT * FROM Categories";
@@ -119,9 +110,6 @@ if (isset($_GET['logout'])) {
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
               </li>
-              <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="#">Gift Card</a>
-            </li>
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="policies.php">Policies</a>
               </li>
@@ -149,14 +137,14 @@ if (isset($_GET['logout'])) {
     </section>
     </div>
 
+
     <!--body-->
     <section class="nail-maincontent">
       <div class="slider">
         <div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="../../img/ảnh_thanh_trượt/anh5.jpeg" class="d-block w-100" alt="Wild Landscape"
-                style="object-fit: cover" />
+              <img src="../../img/ảnh_thanh_trượt/anh5.jpeg" class="d-block w-100" alt="Wild Landscape" style="object-fit: cover; height: 500px;" />
               <div class="carousel-caption">
                 <div class="mb-5">
                   <h1>Nail Your </h1>
@@ -164,14 +152,12 @@ if (isset($_GET['logout'])) {
                 </div>
 
                 <a href="book_now.php"><button type="button" class="btn-light caption">BOOK A SERVICE</button></a>
-                <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button"
-                    class="btn-light caption">SHOP</button></a>
+                <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn-light caption">SHOP</button></a>
               </div>
             </div>
 
             <div class="carousel-item">
-              <img src="../../img/ảnh_thanh_trượt/anh4.jpg" class="d-block w-100" alt="Camera"
-                style="object-fit: cover" />
+              <img src="../../img/ảnh_thanh_trượt/anh4.jpg" class="d-block w-100" alt="Camera" style="object-fit: cover;height: 500px;" />
               <div class="carousel-caption">
                 <div class="mb-5">
                   <h1>Nail Your </h1>
@@ -179,14 +165,12 @@ if (isset($_GET['logout'])) {
                 </div>
 
                 <a href="book_now.php"><button type="button" class="btn-light caption">BOOK A SERVICE</button></a>
-                <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button"
-                    class="btn-light caption">SHOP</button></a>
+                <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn-light caption">SHOP</button></a>
               </div>
             </div>
 
             <div class="carousel-item">
-              <img src="../../img/ảnh_thanh_trượt/anh3.jpg" class="d-block w-100" alt="Exotic Fruits"
-                style="object-fit: cover" />
+              <img src="../../img/ảnh_thanh_trượt/anh3.jpg" class="d-block w-100" alt="Exotic Fruits" style="object-fit: cover;height: 500px;" />
               <div class="carousel-caption">
                 <div class="mb-5">
                   <h1>Nail Your </h1>
@@ -194,19 +178,16 @@ if (isset($_GET['logout'])) {
                 </div>
 
                 <a href="book_now.php"><button type="button" class="btn-light caption">BOOK A SERVICE</button></a>
-                <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button"
-                    class="btn-light caption">SHOP</button></a>
+                <a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=2"><button type="button" class="btn-light caption">SHOP</button></a>
               </div>
             </div>
 
           </div>
-          <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls"
-            data-mdb-slide="prev">
+          <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls"
-            data-mdb-slide="next">
+          <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -227,13 +208,10 @@ if (isset($_GET['logout'])) {
           <div class="col-md-10">
             <h3 class="" style="padding-top:10px;padding-bottom:3px; color: black">Best Seller </h3>
           </div>
-          <!-- <div class="col-md-2">
-          <a href="" style="text-decoration:underline; color: black">Shop Best Sellers</a>
-        </div> -->
         </div>
 
         <div class="row product-slide">
-        <?php
+          <?php
           $sql = "SELECT * FROM Products where ProductID <= 10 ";
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
@@ -271,32 +249,52 @@ if (isset($_GET['logout'])) {
           <div class="row">
             <div class="col-md-3">
               <div class="item">
-                <i class="bi bi-badge-8k-fill fs-2"></i>
-                <div class="card-body">
+                <div class="item-image">
+                  <img src="//miniluxe.com/cdn/shop/files/8Free_black-300x300_715a315f-1200-40b2-b6a5-5d629a443050.png?crop=center&height=150&v=1643777937&width=150" alt="8-Free">
+                </div>
+                <div class="item-title">
+                  <b>8-Free</b>
+                </div>
+                <div class="item-description">
                   <p class="card-text">Free of the eight most toxic ingredients in nail care.</p>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="item">
-                <i class="bi bi-cloud-sun-fill fs-2"></i>
-                <div class="card-body">
+              <div class="item-image">
+                  <img src="//miniluxe.com/cdn/shop/files/CrueltyFree_LeapingBunny-Black-300x300_0ec66e33-38d3-482e-9ef1-2a692ec4e0cf.png?crop=center&height=150&v=1643777999&width=150" alt="Cruelty Free">
+                </div>
+                <div class="item-title">
+                <b>Cruelty Free</b>
+                </div>
+                <div class="item-description">
                   <p class="card-text">Cruelty-free and committed to never test on animals.</p>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="item">
-                <i class="bi bi-globe fs-2"></i>
-                <div class="card-body">
+              <div class="item-image">
+                  <img src="//miniluxe.com/cdn/shop/files/ewgv_logo_black-300x300_7d091a1d-cd9a-4d20-a588-33d6531b28f9.png?crop=center&height=150&v=1643778011&width=150" alt="EWG Verified">
+                </div>
+                <div class="item-title">                 
+                <b>EWG Verified</b>
+                </div>
+                <div class="item-description">
                   <p class="card-text">For our best-selling Nourishing Cuticle Oil Rollerball.</p>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="item">
-                <i class="bi bi-flag-fill fs-2"></i>
-                <div class="card-body">
+              <div class="item-image">
+                  <img src="//miniluxe.com/cdn/shop/files/usa-black-300x300_d538f2b3-4e0b-42cf-bc60-74bcf8d24d08.png?crop=center&height=150&v=1643779424&width=150" alt="USA Made">
+                </div>
+                <div class="item-title">
+                <b>USA Made </b>
+                </div>
+                <div class="item-description">
                   <p class="card-text">All of our products are made in the USA.</p>
                 </div>
               </div>
@@ -304,6 +302,7 @@ if (isset($_GET['logout'])) {
           </div>
         </div>
       </div>
+      <!-- about_us -->
       <div class="nail-story my-5">
         <div class="container-fluid">
           <div class="row">
@@ -323,18 +322,54 @@ if (isset($_GET['logout'])) {
           </div>
         </div>
       </div>
+      <!-- feedback -->
+      <h1 class="text-center py-2">OUR THOUGHTS EXACTLY</h1>
+      <div class="feedback">
+        <div class="row product-slide">
+          <?php
+          if ($conn->connect_error) {
+            die("Lỗi kết nối đến cơ sở dữ liệu: " . $conn->connect_error);
+          }
 
+          $sql = "SELECT username, content, created_at FROM Feedback";
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              $username = $row["username"];
+              $content = $row["content"];
+              $created_at = $row["created_at"];
+          ?>
+              <div class="col-md" style="margin: 50px 40px;">
+                <div class="card feed_card">
+                  <div class="card-body">
+                    <h5 class="card-title feed_cardtitle">
+                      <?php echo $username; ?>
+                    </h5>
+                    <p class="card-text">
+                      <?php echo $content; ?>
+                    </p>
+                    <p><small class="text-body-secondary">Created at
+                        <?php echo $created_at; ?>
+                      </small></p>
+                  </div>
+                </div>
+              </div>
+          <?php
+            }
+          } else {
+            echo "No feedback";
+          }
+          ?>
+        </div>
+      </div>
+      <!-- location -->
       <div class="location py-3">
         <h1 class="text-center py-2">Find Nail Spa Near You</h1>
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-5">
               <h3>Our locations</h3>
-              <div class="input-group flex-nowrap">
-                <span class="input-group-text" id="addon-wrapping">@</span>
-                <input type="text" class="form-control" placeholder="Search by Region, State, City"
-                  aria-label="Username" aria-describedby="addon-wrapping">
-              </div>
               <div class="row my-2">
                 <div class="col-md-8 " style="padding-top: 10px;">
                   <p>NAIL SPA in Ha Noi city</p>
@@ -361,10 +396,7 @@ if (isset($_GET['logout'])) {
               </div>
             </div>
             <div class="col-md-7 my-3">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14898.516285517224!2d105.92669975541993!3d21.007500900000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135afe1391f2bb7%3A0xecc11a7bac874396!2sVinhomes%20Ocean%20Park!5e0!3m2!1svi!2s!4v1696694443420!5m2!1svi!2s"
-                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14898.516285517224!2d105.92669975541993!3d21.007500900000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135afe1391f2bb7%3A0xecc11a7bac874396!2sVinhomes%20Ocean%20Park!5e0!3m2!1svi!2s!4v1696694443420!5m2!1svi!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
         </div>
@@ -382,10 +414,8 @@ if (isset($_GET['logout'])) {
               <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
               <p>
               <div class="mb-3" style="display:flex">
-                <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username"
-                  aria-describedby="button-addon2">
-                <button style="margin-left: 10px;" class=" btn-outline-secondary btn-light caption" type="button"
-                  id="button-addon2">Subscribe</button>
+                <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button style="margin-left: 10px;" class=" btn-outline-secondary btn-light caption" type="button" id="button-addon2">Subscribe</button>
               </div>
               </p>
             </div>
@@ -394,18 +424,15 @@ if (isset($_GET['logout'])) {
               <div class="row">
                 <div class="col-md-6">
                   <ul style="list-style-type: none;">
-                    <li class="my-2"><a href="shop.php" style="text-decoration: none; color: #fff">SHOP</a></li>
-                    <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a>
-                    </li>
+                    <li class="my-2"><a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=1location.php" style="text-decoration: none; color: #fff">SHOP</a></li>
                     <li class="my-2"><a href="service.php" style="text-decoration: none; color: #fff">SERVICES</a></li>
-                    <li class="my-2"><a href="" style="text-decoration: none; color: #fff">GIFT CARDS</a></li>
+                    <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
                   </ul>
                 </div>
                 <div class="col-md-6">
                   <ul style="list-style-type: none;">
                     <li class="my-2"><a href="about_us.php" style="text-decoration: none; color: #fff">ABOUT US</a></li>
-                    <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a>
-                    </li>
+                    <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
                     <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff">FAQ</a></li>
                   </ul>
                 </div>

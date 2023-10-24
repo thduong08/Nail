@@ -1,8 +1,4 @@
 
-img{
-    height: 500px;
-}
-
 .nail-history {
     font-family: Vanitas-Extrabold, MierB, arial;
 }
@@ -32,11 +28,46 @@ img{
 }
 
 .item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 0 1 45%;
+    margin-bottom: 30px;
+    margin-bottom: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     max-width: 280px;
     padding: 0 20px;
+}
+
+
+.item-image img {
+    width: 100%;
+}
+
+.item-title {
+    font-family: MierB,arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: .005em;
+    color: #000;
+    padding-left: 17px;
+    margin: 8px 0;
+}
+
+.item-description {
+    font-size: 18px;
+    line-height: 24px;
+    display: block;
+    text-align: center;
+    font-family: MierB,arial;
+    font-style: normal;
+    line-height: 30px;
+    letter-spacing: .005em;
+    color: #000;
 }
 
 .caption{
@@ -55,6 +86,13 @@ img{
 
 a{
     text-decoration: none;
+}
+
+.feed_card{
+    border-radius: 20px;
+    background-color: #dca8a8;
+    color: #fff;
+    
 }
 
   

@@ -1,6 +1,7 @@
 <?php
 include('../Models/database.php');
 session_start();
+$_SESSION['return_to'] = $_SERVER['REQUEST_URI']; // Store the current URL
 if (isset($_GET['logout'])) {
   session_start();
   session_unset();
@@ -8,6 +9,25 @@ if (isset($_GET['logout'])) {
   header("Location: login.php");
   exit();
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if (isset($_POST['submit_feedback'])) {
+    $content = $_POST['feedback_content'];
+    $username = $_SESSION['username'];
+
+    $sql = "INSERT INTO Feedback (username, content) VALUES (?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $username, $content);
+
+    if ($stmt->execute()) {
+      header("Location: contact_us.php");
+      exit();
+    } else {
+      echo "Error: " . $conn->error;
+    }
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,11 +42,7 @@ if (isset($_GET['logout'])) {
   <link rel="icon" href="../../img/Logo_icon2/1.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-  <style>
-    .dropdown-item:active{
-      background-color:#dca8a8;
-    }
-  </style>
+
 </head>
 
 <body>
@@ -55,6 +71,8 @@ if (isset($_GET['logout'])) {
           </div>
           <div class="col-sm d-none d-md-block">
             <div class="row">
+              <div class="col-sm">
+              </div>
               <div class="col-sm" style="display: flex">
                 <?php
                 if (isset($_SESSION['username'])) {
@@ -63,8 +81,8 @@ if (isset($_GET['logout'])) {
                   echo '<p class="m-0 p-0 fs-5"><i class="bi bi-box-arrow-right"></i></p>';
                   echo '</a>';
                 } else {
-                  echo '<a href="login.php" style="text-decoration: none; color: black>';
-                  echo '<p class="m-0 p-0 fs-5"><i class="bi bi-person-circle"></i></p>';
+                  echo '<a href="login.php" style="text-decoration: none; color: black;>';
+                  echo '<p class="m-0 p-0 "><i class="bi bi-person-circle fs-5" style="text-decoration: none; color: black"></i></p>';
                   echo '</a>';
                 }
                 ?>
@@ -75,8 +93,9 @@ if (isset($_GET['logout'])) {
                 </a>
               </div>
               <div class="col-sm">
-                <a href="" style="text-decoration: none; color: black">
+                <a href="view_cart.php" style="text-decoration: none; color: black">
                   <p class="m-0 p-0 fs-5"><i class="bi bi-bag"></i></p>
+                  (<?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>)
                 </a>
               </div>
             </div>
@@ -87,16 +106,13 @@ if (isset($_GET['logout'])) {
     <section class="nail-mainmenu" style="display: flex; justify-content: center; align-items: center;">
       <nav class="navbar navbar-expand-lg bg-body">
         <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item px-2">
-                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Shop</a>
+                <a class="nav-link dropdown-toggle" href="shop.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
                   <?php
                   $sql = "SELECT * FROM Categories";
@@ -114,9 +130,6 @@ if (isset($_GET['logout'])) {
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="library.php">Nairl Art</a>
               </li>
-              <li class="nav-item px-2">
-              <a class="nav-link" aria-current="page" href="#">Gift Card</a>
-            </li>
               <li class="nav-item px-2">
                 <a class="nav-link" aria-current="page" href="policies.php">Policies</a>
               </li>
@@ -143,131 +156,114 @@ if (isset($_GET['logout'])) {
       </nav>
     </section>
     </div>
-<hr>
+    <hr>
 
-        <!-- body -->
-    <div class ="container d-flex" style="padding: 100px">
-            
-        <div class="row2">
-            <div class="col-md-7">
-                <form class="main">
-                    <h2 class="text-center">Your Feedback?</h2>
-                    <p class="text-center">We're here to help. Send us a note below and we'll get back to you.</p>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">First name *</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="First name">
-                    </div>
+    <!-- body -->
+    <div class="container d-flex" style="padding: 100px">
 
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Last name *</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="last name">
-                    </div>
+      <div class="row2">
+        <div class="col-md-7">
+          <form class="main" action="contact_us.php" method="post" onsubmit="return checkLoginStatus(); ">
+            <h2 class="text-center">Your Feedback?</h2>
+            <p class="text-center">We're here to help. Send us a note below, and we'll get back to you.</p>
 
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Your Email">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn-book-now" style="margin-left: 190px">Submit</button>
-                </form>
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" name="feedback_content" rows="3" required></textarea>
             </div>
+
+            <button type="submit" name="submit_feedback" class="btn-book-now2">Submit</button>
+          </form>
         </div>
+      </div>
 
-        <div class="row ms-5">
-                <div>
-                    <h1 style="font-family: Vanitas-Extrabold;" class="text-center">CONTACT US</h1>
-                </div>
-                <div class="d-flex">
-                <!-- <div class="me-4"><h4>Nail Spa</h4></div>
-                <div>
-                <select class="form-select form-control" aria-label="Default select example">
-                    <option selected>Monday</option>
-                    <option value="1">Tuesday</option>
-                    <option value="2">Wednesday</option>
-                    <option value="3">Thursday</option>
-                    <option value="4">Friday</option>
-                    <option value="5">Saturday</option>
-                    <option value="6">Sunday</option>
-                </select>
-                </div>
-                </div> -->
-                <div>
-                    <div>
-                        <h5>SHOP AND SHIPPING INQUIRIES</h5>
-                        <p>For shipping, product and other order inquiries, please contact: <a href="#">customerservice@nailspa.com</a></p>
-                    </div>
-                    <div>
-                        <h5>WHOLESALE</h5>
-                        <p>For inquiries regarding wholesale purchases or opening a wholesale account to retail our products, please contact: <a href="#">wholesale@nailspa.com</a></p>
-                     </div>
-                <br><br> <br><br><br>
-                <!-- <div>
-                    <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">19 Lê Thanh nghị<br>
-                    SDT: 01325323561<br>
-                    Email: contact@nailspa.com <br>
-                    </p>
-                </div> -->
-                </div>  
-                </div> 
-            </div>
+      <div class="row ms-5">
+        <div>
+          <h1 style="font-family: Vanitas-Extrabold;" class="text-center">CONTACT US</h1>
         </div>
-    </div>  
-</div>
+        <div class="d-flex">
 
-<!--footer-->
-<footer class="footer" style="color: #fff">
-  <section class="nail-footer">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-5 my-3">
-          <h3 class="p-0 m-0"><span class="fs-1">NAIL SPA</h3>
-          <p class="p-0 m-0">Get email updates on all things nails, evens, products and</p>
-          <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
-          <p>
-          <div class="mb-3" style="display:flex">
-            <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button style="margin-left: 10px;" class=" btn-outline-secondary btn-light caption" type="button" id="button-addon2">Subscribe</button>
-          </div>
-          </p>
-        </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-5 my-4" >
-          <div class="row">
-            <div class="col-md-6">
-              <ul style="list-style-type: none;">
-                <li class="my-2" ><a href="shop.php" style="text-decoration: none; color: #fff">SHOP</a></li>
-                <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
-                <li class="my-2"><a href="service.php" style="text-decoration: none; color: #fff">SERVICES</a></li>
-                <li class="my-2"><a href="" style="text-decoration: none; color: #fff">GIFT CARDS</a></li>
-              </ul>
+          <div>
+            <div>
+              <h5>SHOP AND SHIPPING INQUIRIES</h5>
+              <p>For shipping, product and other order inquiries, please contact: <a href="#">customerservice@nailspa.com</a></p>
             </div>
-            <div class="col-md-6">
-              <ul style="list-style-type: none;">
-                <li class="my-2"><a href="about_us.php" style="text-decoration: none; color: #fff">ABOUT US</a></li>
-                <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
-                <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff" >FAQ</a></li>
-              </ul>
+            <div>
+              <h5>WHOLESALE</h5>
+              <p>For inquiries regarding wholesale purchases or opening a wholesale account to retail our products,
+                please contact: <a href="#">wholesale@nailspa.com</a></p>
             </div>
+            <br><br> <br><br><br>
+
           </div>
         </div>
       </div>
     </div>
     </div>
-  </section>
-  </footer>
+    </div>
 
+    <!--footer-->
+    <footer class="footer" style="color: #fff">
+      <section class="nail-footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-5 my-3">
+              <h3 class="p-0 m-0"><span class="fs-1">NAIL SPA</h3>
+              <p class="p-0 m-0">Get email updates on all things nails, evens, products and</p>
+              <p class="p-0 m-0">launches. No strings attached-you can unsubscribe at any time</p>
+              <p>
+              <div class="mb-3" style="display:flex">
+                <input type="text" class="form-control" placeholder="Your email" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button style="margin-left: 10px;" class=" btn-outline-secondary btn-light caption" type="button" id="button-addon2">Subscribe</button>
+              </div>
+              </p>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-5 my-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <ul style="list-style-type: none;">
+                    <li class="my-2"><a href="http://localhost/Project_nailart/MVC/Views/Shop.php?CategoryID=1location.php" style="text-decoration: none; color: #fff">SHOP</a></li>
+                    <li class="my-2"><a href="service.php" style="text-decoration: none; color: #fff">SERVICES</a></li>
+                    <li class="my-2"><a href="location.php" style="text-decoration: none; color: #fff">LOCATIONS</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul style="list-style-type: none;">
+                    <li class="my-2"><a href="about_us.php" style="text-decoration: none; color: #fff">ABOUT US</a></li>
+                    <li class="my-2"><a href="contact_us.php" style="text-decoration: none; color: #fff">CONTACT US</a></li>
+                    <li class="my-2"><a href="FAQ.php" style="text-decoration: none; color: #fff">FAQ</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+    </footer>
+    <script>
+      function checkLoginStatus() {
+        <?php
+        // Check login
+        if (isset($_SESSION['username'])) {
+          echo "return true;";
+        } else {
+          echo "alert('You need to log in before submitting feedback. Click OK to log in.');";
+          echo "window.location.href = 'login.php';";
+          echo "return false;";
+        }
+        ?>
+      }
+    </script>
 
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script type="text/javascript" src="./js/home.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="./js/home.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
